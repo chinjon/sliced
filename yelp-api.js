@@ -3,10 +3,10 @@ var Yelp = require('yelp');
 var fs = require('fs');
 
 var yelp = new Yelp({
-  consumer_key: 'HEM6lUBvoJlKsi1i80Sh9g',
-  consumer_secret: 'EBPbGQQUz6lDF9yvwYUMkANTsyY',
-  token: 'kqi678gE7kkYklgWkOXv1zM47xEYiDbZ',
-  token_secret: 'dd836EO3YLS8QvvBbpEnzRRZR5k',
+  consumer_key: config.KEY,
+  consumer_secret: config.CONSUME_SECRET,
+  token: config.TOKEN,
+  token_secret: config.TOKEN_SECRET,
 });
 
 yelp.search({ term: 'dollar pizza', location: 'New York City' })
