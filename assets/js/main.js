@@ -23,8 +23,17 @@ db.ref().on('value',function(snap){
     var marker = new google.maps.Marker({
       position: location.position,
       map: map,
-      title: 'dollar pizza'
+      shopName: location.name
     });
+
+    var infowindow = new google.maps.InfoWindow({
+      content: location.name
+    });
+
+    marker.addListener('click', function() {
+      infowindow.open(map, marker);
+    });
+
   })
 })
 
