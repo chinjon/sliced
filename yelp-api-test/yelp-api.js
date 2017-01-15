@@ -1,6 +1,7 @@
 // https://www.yelp.com/developers/documentation/v3/business_search
 var Yelp = require('yelp');
 var fs = require('fs');
+var config = require('config');
 
 var yelp = new Yelp({
   consumer_key: config.KEY,
