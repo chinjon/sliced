@@ -40,8 +40,8 @@ db.ref().on('value',function(snap){
 function initMap() {
   map = new google.maps.Map(map[0], {
     center: {
-      lat: 40.7471517,
-      lng: -73.9827929
+      lat: 40.7176929,
+      lng: -73.982117
     },
     zoom: 13
   });
