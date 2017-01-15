@@ -1,0 +1,28 @@
+{
+    "destination_addresses": ["New York, NY, USA", "1721 Broadway, New York, NY 10019, USA"],
+    "origin_addresses": ["Yonkers, NY, USA"],
+    "rows": [{
+        "elements": [{
+            "distance": {
+                "text": "31.7 km",
+                "value": 31708
+            },
+            "duration": {
+                "text": "44 mins",
+                "value": 2652
+            },
+            "status": "OK"
+        }, {
+            "distance": {
+                "text": "26.0 km",
+                "value": 25986
+            },
+            "duration": {
+                "text": "29 mins",
+                "value": 1752
+            },
+            "status": "OK"
+        }]
+    }],
+    "status": "OK"
+}

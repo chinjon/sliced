@@ -9,11 +9,57 @@
     <title>$lice - The Dollar Pizza Map</title>
   </head>
   <body>
+
     <nav class="light-blue lighten-1" role="navigation">
       <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">NYCheap.Eats</a>
         <ul class="right hide-on-med-and-down">
           <li><a href="#">View Code</a></li>
         </ul>
+
+    <div id="map"></div>
+    <script>
+
+      function initMap() {
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 13,
+        // Central Park
+          center: {lat: 40.786, lng: -73.961}
+        });
+
+
+        // Create an array of alphabetical characters used to label the markers.
+        var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+        // Add some markers to the map.
+        // Note: The code uses the JavaScript Array.prototype.map() method to
+        // create an array of markers based on a given "locations" array.
+        // The map() method here has nothing to do with the Google Maps API.
+        var markers = locations.map(function(location, i) {
+          return new google.maps.Marker({
+            position: location,
+            label: labels[i % labels.length]
+          });
+        });
+
+        // Add a marker clusterer to manage the markers.
+        var markerCluster = new MarkerClusterer(map, markers,
+            {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
+      }
+      var locations = [
+      // 2 Bros Pizza Uptown
+        {lat: 40.804, lng: -73.938},
+      // 2 Bros Pizza Midtown
+        {lat: 40.756, lng: -73.993}
+      ]
+    </script>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+      <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAhVCu_gr8RKRpyAtvWqbtRb-DFyCvgqUM&callback=initMap"></script>
+<script src="./assets/js/distance.js"></script>
+<!-- <script src="./assets/js/app.js"></script> -->
+</body>
+
 
         <ul id="nav-mobile" class="side-nav">
           <li><a href="#">Navbar Link</a></li>

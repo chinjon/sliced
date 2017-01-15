@@ -1,9 +1,30 @@
 {
   "name": "sliced",
   "version": "1.0.0",
+
   "dependencies": {
     "firebase": "^3.6.5",
     "google-map-marker": "^1.2.3",
     "yelp": "^1.0.2"
   }
+
+  "description": "testing google maps api",
+  "main": "index.html",
+  "dependencies": {},
+  "devDependencies": {
+    "google-distance-matrix": "0.0.3"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chinjon/sliced.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chinjon/sliced/issues"
+  },
+  "homepage": "https://github.com/chinjon/sliced#readme"
 }
