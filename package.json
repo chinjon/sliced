@@ -1,11 +1,9 @@
 {
   "name": "sliced",
   "version": "1.0.0",
-  "description": "testing google maps api",
   "dependencies": {
     "firebase": "^3.6.5",
     "google-map-marker": "^1.2.3",
     "yelp": "^1.0.2"
-  },
-  "devDependencies": {}
+  }
 }
