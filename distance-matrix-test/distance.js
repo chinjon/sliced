@@ -11,26 +11,10 @@ var googleMapsClient = require('@google/maps').createClient({
 });
 
 
-var origins = ['San Francisco CA'];
-var destinations = ['New York NY', '41.8337329,-87.7321554'];
+var origins = ['Yonkers, NY '];
+var destinations = ['New York NY', '40.7644882,-73.98246'];
 
 distance.matrix(origins, destinations, function (err, distances) {
     if (!err)
-        console.log(JSON.stringify(distances));
+        fs.appendFileSync('distance-test.json', JSON.stringify(distances));
 });
-
-
-
-// googleMapsClient.geocode({
-//   address: '1600 Amphitheatre Parkway, Mountain View, CA'
-// }, function(err, response) {
-//   if (!err) {
-//     console.log(response.json.results);
-//     fs.writeFile(".json", JSON.stringify(data), function(err) {
-//       if(err) {
-//           return console.log(err);
-//       }
-//
-//   })
-//   }
-// });
