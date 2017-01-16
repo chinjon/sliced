@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
     <link rel="stylesheet" href="assets/css/styles.css">
     <script src="https://www.gstatic.com/firebasejs/3.6.5/firebase.js"></script>
-    <title>$lice - The Dollar Pizza Map</title>
+    <title>NYCheap.Eats - The Cheap Eats & Alcohol Guide To NYC</title>
   </head>
   <body>
     <nav class="light-blue lighten-1" role="navigation">
@@ -14,14 +14,20 @@
         <ul class="right hide-on-med-and-down">
           <li><a href="#">View Code</a></li>
         </ul>
-
-        <ul id="nav-mobile" class="side-nav">
-          <li><a href="#">Navbar Link</a></li>
-        </ul>
         <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
       </div>
     </nav>
-    <div id="map"></div>
+
+    <div id="container">
+      <div class="row">
+        <div class="col m8 offset-m2">
+          <div id="map">
+
+          </div>
+        </div>
+      </div>
+    </div>
+
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAhVCu_gr8RKRpyAtvWqbtRb-DFyCvgqUM&callback=initMap"></script>

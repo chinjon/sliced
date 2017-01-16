@@ -1,12 +1,18 @@
-#map {
-  height: 900px;
-  width: 1000px;
-  margin-left: 210px;
-  margin-top: 50px;
-  margin-bottom: 50px;
+body, html {
+  height: 100%;
+  width: 100%;
+  margin: 0;
 }
 
-html, body {
+/*#map {
   height: 100%;
-  margin: 0;
+  width: 100%;
+}*/
+
+#map {
+  height: 700px;
+  width: 100%;
+  /*margin-left: 210px;*/
+  margin-top: 50px;
+  /*margin-bottom: 50px;*/
 }
