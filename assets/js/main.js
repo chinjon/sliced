@@ -22,7 +22,8 @@ $.ajax({
   async: false
 }).done(function(response){
   ip = response;
-  console.log('inside ajax',ip.ip);
+  console.log('inside ajax: ',ip.ip);
+  console.log('inside ajax: ', ip.loc);
 
   // var marker = new google.maps.Marker({
   //   position: ,
@@ -59,9 +60,9 @@ db.ref().on('value',function(snap){
       infowindow.open(map, marker);
     });
 
-    navigator.geolocation.getCurrentPosition(function(position){
-      return position.coords.latitude
-    })
+    // navigator.geolocation.getCurrentPosition(function(position){
+    //   return position.coords.latitude
+    // })
   })
 })
 
