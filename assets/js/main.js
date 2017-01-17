@@ -5,12 +5,31 @@ var config = {
   storageBucket: "",
   messagingSenderId: "9404531697"
 };
+
 firebase.initializeApp(config);
 
+var ip;
+
 // $.get("http://ipinfo.io", function(response) {
-//     ip = response.ip;
-//     return ip
+//   ip = response.ip;
+//   // console.log(ip)
 // }, "jsonp");
+
+$.ajax({
+  url: 'http://ipinfo.io',
+  method: 'GET',
+  dataType: 'jsonp',
+  async: false
+}).done(function(response){
+  ip = response;
+  console.log('inside ajax',ip.ip);
+
+  // var marker = new google.maps.Marker({
+  //   position: ,
+  //   map: map,
+  //   shopName: 'You'
+  // });
+})
 
 var db = firebase.database();
 var map = $('#map');
@@ -24,6 +43,7 @@ db.ref().on('value',function(snap){
   for(let prop in data){
     pizza_locations.push(data[prop])
   }
+
   pizza_locations.forEach(function(location){
     var marker = new google.maps.Marker({
       position: location.position,
@@ -39,6 +59,9 @@ db.ref().on('value',function(snap){
       infowindow.open(map, marker);
     });
 
+    navigator.geolocation.getCurrentPosition(function(position){
+      return position.coords.latitude
+    })
   })
 })
 
