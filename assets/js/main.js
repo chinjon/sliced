@@ -7,6 +7,11 @@ var config = {
 };
 firebase.initializeApp(config);
 
+// $.get("http://ipinfo.io", function(response) {
+//     ip = response.ip;
+//     return ip
+// }, "jsonp");
+
 var db = firebase.database();
 var map = $('#map');
 var data;
