@@ -24,7 +24,8 @@ $.ajax({
   ip = response;
   console.log('inside ajax: ',ip.ip);
   console.log('inside ajax: ', ip.loc);
-
+  latLngArray = ip.loc.split(",");
+  console.log(ip.loc.split(","));
   // var marker = new google.maps.Marker({
   //   position: ,
   //   map: map,
