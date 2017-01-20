@@ -1,6 +1,0 @@
-var config = {
-    CONSUMER_KEY:'HEM6lUBvoJlKsi1i80Sh9g',
-    CONSUMER_SECRET: 'EBPbGQQUz6lDF9yvwYUMkANTsyY',
-    TOKEN: 'kqi678gE7kkYklgWkOXv1zM47xEYiDbZ',
-    TOKEN_SECRET: 'dd836EO3YLS8QvvBbpEnzRRZR5k'
-}
