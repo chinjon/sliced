@@ -10,11 +10,6 @@ firebase.initializeApp(config);
 
 var ip;
 
-// $.get("http://ipinfo.io", function(response) {
-//   ip = response.ip;
-//   // console.log(ip)
-// }, "jsonp");
-
 $.ajax({
   url: 'http://ipinfo.io',
   method: 'GET',
