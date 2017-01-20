@@ -38,32 +38,31 @@ var map = $('#map');
 var data;
 
 db.ref().on('value',function(snap){
-  data = snap.val();
+  data = snap.val().pizza_shops;
 
   var pizza_locations = [];
 
   for(let prop in data){
-    pizza_locations.push(data[prop])
+    pizza_locations.push(data[prop]);
   }
-
-  pizza_locations.forEach(function(location){
+  console.log(pizza_locations)
+  pizza_locations.forEach(function(object){
+    console.log(object.shop.position);
     var marker = new google.maps.Marker({
-      position: location.position,
+      position: object.shop.position,
       map: map,
-      shopName: location.name
+      shopName: object.shop.name
     });
 
     var infowindow = new google.maps.InfoWindow({
-      content: location.name
+      content: object.shop.name,
+      text: object.shop.snippet_text
     });
 
     marker.addListener('click', function() {
       infowindow.open(map, marker);
     });
 
-    // navigator.geolocation.getCurrentPosition(function(position){
-    //   return position.coords.latitude
-    // })
   })
 })
 
