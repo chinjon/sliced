@@ -1,4 +1,4 @@
-var Yelp = require('yelp');
+  var Yelp = require('yelp');
 var config = require('./config');
 var firebase = require('firebase');
 var fs = require('fs');
