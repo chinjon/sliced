@@ -26,11 +26,14 @@ $.ajax({
   console.log('inside ajax: ', ip.loc);
   latLngArray = ip.loc.split(",");
   console.log(ip.loc.split(","));
-  // var marker = new google.maps.Marker({
-  //   position: ,
-  //   map: map,
-  //   shopName: 'You'
-  // });
+  var marker = new google.maps.Marker({
+    position: {
+      lat: parseFloat(latLngArray[0]),
+      lng: parseFloat(latLngArray[1])
+    },
+    map: map,
+    shopName: 'You'
+  });
 })
 
 var db = firebase.database();
@@ -45,9 +48,9 @@ db.ref().on('value',function(snap){
   for(let prop in data){
     pizza_locations.push(data[prop]);
   }
-  console.log(pizza_locations)
+
   pizza_locations.forEach(function(object){
-    console.log(object.shop.position);
+
     var marker = new google.maps.Marker({
       position: object.shop.position,
       map: map,
