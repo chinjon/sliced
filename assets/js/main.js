@@ -5,29 +5,61 @@ var config = {
   storageBucket: "",
   messagingSenderId: "9404531697"
 };
+
 firebase.initializeApp(config);
+
+var ip;
+
+// $.get("http://ipinfo.io", function(response) {
+//   ip = response.ip;
+//   // console.log(ip)
+// }, "jsonp");
+
+$.ajax({
+  url: 'http://ipinfo.io',
+  method: 'GET',
+  dataType: 'jsonp',
+  async: false
+}).done(function(response){
+  ip = response;
+  console.log('inside ajax: ',ip.ip);
+  console.log('inside ajax: ', ip.loc);
+  latLngArray = ip.loc.split(",");
+  console.log(ip.loc.split(","));
+  var marker = new google.maps.Marker({
+    position: {
+      lat: parseFloat(latLngArray[0]),
+      lng: parseFloat(latLngArray[1])
+    },
+    map: map,
+    shopName: 'You'
+  });
+})
 
 var db = firebase.database();
 var map = $('#map');
 var data;
 
 db.ref().on('value',function(snap){
-  data = snap.val();
+  data = snap.val().pizza_shops;
 
   var pizza_locations = [];
 
   for(let prop in data){
-    pizza_locations.push(data[prop])
+    pizza_locations.push(data[prop]);
   }
-  pizza_locations.forEach(function(location){
+
+  pizza_locations.forEach(function(object){
+
     var marker = new google.maps.Marker({
-      position: location.position,
+      position: object.shop.position,
       map: map,
-      shopName: location.name
+      shopName: object.shop.name
     });
 
     var infowindow = new google.maps.InfoWindow({
-      content: location.name
+      content: object.shop.name,
+      text: object.shop.snippet_text
     });
 
     marker.addListener('click', function() {
