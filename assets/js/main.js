@@ -64,26 +64,27 @@ $('#user-location-search').on('click', function (e) {
   }).done(function (data) {
 
     function calcDistance(origin, destination) {
-  var distanceService = new google.maps.DistanceMatrixService();
-  distanceService.getDistanceMatrix({
-      // pulls location from global variable
-      // not dynamically updating
-      origins: [userLocation],
-      destinations: ['40.727245342041,-73.9895823', '40.7644882,-73.98246'],
-      travelMode: google.maps.TravelMode.DRIVING,
-      unitSystem: google.maps.UnitSystem.METRIC,
-      durationInTraffic: true,
-      avoidHighways: false,
-      avoidTolls: false
-    },
-    function (response, status) {
-      if (status !== google.maps.DistanceMatrixStatus.OK) {
-        console.log('Error:', status);
-      } else {
-        console.log(response);
-      }
-    });
-}
+      var distanceService = new google.maps.DistanceMatrixService();
+      distanceService.getDistanceMatrix({
+          // pulls location from global variable
+          // not dynamically updating
+          origins: [userLocation],
+          destinations: ['40.727245342041,-73.9895823', '40.7644882,-73.98246'],
+          travelMode: google.maps.TravelMode.WALKING,
+          unitSystem: google.maps.UnitSystem.IMPERIAL,
+          // need to rework or change parameters to reflect walking times and routes
+          durationInTraffic: true,
+          avoidHighways: false,
+          avoidTolls: false
+        },
+        function (response, status) {
+          if (status !== google.maps.DistanceMatrixStatus.OK) {
+            console.log('Error:', status);
+          } else {
+            console.log(response);
+          }
+        });
+    }
 
     var inputLong = data.results[0].geometry.location.lng;
     var inputLat = data.results[0].geometry.location.lat;
@@ -141,8 +142,8 @@ function addMarker(place) {
 
 
 // distance matrix function
-    // is called when user enters location information
-        // need to figure out how to pipe predefined locations into destinations key 
+// is called when user enters location information
+// need to figure out how to pipe predefined locations into destinations key 
 // function calcDistance(origin, destination) {
 //   var distanceService = new google.maps.DistanceMatrixService();
 //   distanceService.getDistanceMatrix({
