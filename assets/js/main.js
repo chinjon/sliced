@@ -33,7 +33,6 @@ db.ref().on('value',function(snap){
   console.log(snap.val());
   data = snap.val().pizza_shops;
 
-
   for(let place in data){
     pizza_locations.push(data[place]); //push object with location data from database to local array
     addMarker(data[place]);
@@ -52,7 +51,6 @@ var mapOptions = {
 //initializes and adds map to page
 function initMap() {
   map = new google.maps.Map(map[0], mapOptions);
-
 }
 
 //adds marker at location of each establishment
@@ -71,7 +69,7 @@ function addMarker(place) {
 //adds info window to marker
 function addInfo(place) {
   var infowindow = new google.maps.InfoWindow({
-    content: '<h4>' + place.shop.name + '</h4>' + '</br>' + '<p>' + place.shop.snippet_text + '</p>'
+    content: '<h4>' + place.shop.name + '</h4>' + '<p>' + place.shop.snippet_text + '</p>'
   });
 
   marker.addListener('click', function() {
