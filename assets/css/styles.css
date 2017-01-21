@@ -9,3 +9,21 @@ body, html {
   width: 100%;
   margin-top: 50px;
 }
+
+#location-list-module {
+  margin-top: 50px;
+}
+
+.location-rating,
+.list-distance{
+  float: right;
+}
+
+.location-rating {
+  margin-right: 65px;
+}
+
+i.rating-stars {
+  margin-right: 0;
+
+}
