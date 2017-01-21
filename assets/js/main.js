@@ -69,6 +69,9 @@ db.ref().on('value', function (snap) {
   })
 })
 
+
+// obtain new long and lat and shift map view
+
 function moveToLocation(lat, lng){
     var center = new google.maps.LatLng(lat, lng);
 
@@ -92,8 +95,6 @@ $('button').on('click', function (e) {
     moveToLocation(inputLat, inputLong);
 
     // console.log("User lat: " + inputLat + " User long: " + inputLong);
-
-
   })
 });
 
