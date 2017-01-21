@@ -48,3 +48,12 @@ i.rating-stars {
   color: #fff;
 }
 /*LOCATION LIST END*/
+#green_logo_text {
+  color: #4CAF50;
+}
+
+#grey_logo_text {
+  color: #fafafa;
+  text-decoration: line-through;
+  opacity: 0.4
+}
