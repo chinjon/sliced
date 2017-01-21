@@ -1,0 +1,48 @@
+{
+    "destination_addresses": ["34A St Marks Pl, New York, NY 10003, USA", "142-154 E 43rd St, New York, NY 10017, USA", "142-154 E 43rd St, New York, NY 10017, USA", "244 E 28th St, New York, NY 10016, USA"],
+    "origin_addresses": ["1721 Broadway, New York, NY 10019, USA"],
+    "rows": [{
+        "elements": [{
+            "distance": {
+                "text": "5.1 km",
+                "value": 5131
+            },
+            "duration": {
+                "text": "24 mins",
+                "value": 1449
+            },
+            "status": "OK"
+        }, { 
+            "distance": {
+                "text": "2.7 km",
+                "value": 2702
+            },
+            "duration": {
+                "text": "14 mins",
+                "value": 822
+            },
+            "status": "OK"
+        }, {
+            "distance": {
+                "text": "2.7 km",
+                "value": 2702
+            },
+            "duration": {
+                "text": "14 mins",
+                "value": 822
+            },
+            "status": "OK"
+        }, {
+            "distance": {
+                "text": "3.6 km",
+                "value": 3617
+            },
+            "duration": {
+                "text": "18 mins",
+                "value": 1072
+            },
+            "status": "OK"
+        }]
+    }],
+    "status": "OK"
+}

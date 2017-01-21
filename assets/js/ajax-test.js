@@ -1,0 +1,5 @@
+$.ajax({
+    url: '', 
+    method: 'POST'
+
+});

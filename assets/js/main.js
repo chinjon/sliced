@@ -15,9 +15,9 @@ $.ajax({
   method: 'GET',
   dataType: 'jsonp',
   async: false
-}).done(function(response){
+}).done(function (response) {
   ip = response;
-  console.log('inside ajax: ',ip.ip);
+  console.log('inside ajax: ', ip.ip);
   console.log('inside ajax: ', ip.loc);
   latLngArray = ip.loc.split(",");
   console.log(ip.loc.split(","));
@@ -28,6 +28,47 @@ var map = $('#map');
 var marker;
 var data;
 var pizza_locations = [];
+
+db.ref().on('value', function (snap) {
+  data = snap.val().pizza_shops;
+
+  var pizza_locations = [];
+
+  for (let prop in data) {
+    pizza_locations.push(data[prop]);
+  }
+
+})
+
+
+// obtain new long and lat and shift map view
+
+function moveToLocation(lat, lng){
+    var center = new google.maps.LatLng(lat, lng);
+
+    map.panTo(center);
+    map.setZoom(15);
+}
+
+$('#user-location-search').on('click', function (e) {
+  e.preventDefault();
+  var input = $('#userLocationInput').val().trim();
+  var userLocation = input;
+  var key = 'AIzaSyAhVCu_gr8RKRpyAtvWqbtRb-DFyCvgqUM';
+
+  $.ajax({
+    url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + userLocation + '&key=' + key,
+    method: 'GET'
+  }).done(function (data) {
+
+    var inputLong = data.results[0].geometry.location.lng;
+    var inputLat = data.results[0].geometry.location.lat;
+    moveToLocation(inputLat, inputLong);
+    calcDistance('Istanbul, Turkey', 'Ankara, Turkey');
+    // console.log("User lat: " + inputLat + " User long: " + inputLong);
+  })
+});
+
 
 db.ref().on('value',function(snap){
   console.log(snap.val());
@@ -65,6 +106,26 @@ function addMarker(place) {
   console.log(place)
 }
 
+
+// function calcDistance(origin, destination) {
+// var distanceService = new google.maps.DistanceMatrixService();
+//     distanceService.getDistanceMatrix({
+//         origins: ['Istanbul, Turkey'],
+//         destinations: ['Ankara, Turkey'],
+//         travelMode: google.maps.TravelMode.DRIVING,
+//         unitSystem: google.maps.UnitSystem.METRIC,
+//         durationInTraffic: true,
+//         avoidHighways: false,
+//         avoidTolls: false
+//     },
+//     function (response, status) {
+//         if (status !== google.maps.DistanceMatrixStatus.OK) {
+//             console.log('Error:', status);
+//         } else {
+//             console.log(response);
+//         }
+//     });
+
 //adds info window to marker
 function addInfo(place) {
   var infowindow = new google.maps.InfoWindow({
@@ -75,3 +136,4 @@ function addInfo(place) {
     infowindow.open(map, this);
   });
 }
+

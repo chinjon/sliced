@@ -2,6 +2,7 @@ body, html {
   height: 100%;
   width: 100%;
   margin: 0;
+  background-color: #FAFAFA;
 }
 
 #map {
@@ -9,3 +10,42 @@ body, html {
   width: 100%;
   margin-top: 50px;
 }
+
+
+/*LOCATION LIST START*/
+
+#location-list-module {
+  margin-top: 50px;
+}
+
+.location-rating,
+.list-distance{
+  float: right;
+}
+
+.location-rating {
+  margin-right: 45px;
+}
+
+i.rating-stars {
+  margin-right: 0;
+}
+
+.location-name {
+  font-weight: 800;
+  font-size: 18.5px;
+}
+
+.location-address {
+  font-style: italic;
+}
+
+.address-collapse {
+  background-color: #EEE;
+}
+
+#location-list-module li.active .collapsible-header {
+  background-color: #F44336;
+  color: #fff;
+}
+/*LOCATION LIST END*/
