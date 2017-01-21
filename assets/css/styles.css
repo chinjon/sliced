@@ -2,6 +2,7 @@ body, html {
   height: 100%;
   width: 100%;
   margin: 0;
+  background-color: #FAFAFA;
 }
 
 #map {
@@ -25,5 +26,22 @@ body, html {
 
 i.rating-stars {
   margin-right: 0;
+}
 
+.location-name {
+  font-weight: 800;
+  font-size: 20px;
+}
+
+.location-address {
+  font-style: italic;
+}
+
+.address-collapse {
+  background-color: #EEE;
+}
+
+#location-list-module li.active .collapsible-header {
+  background-color: #F44336;
+  color: #fff;
 }
