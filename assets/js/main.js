@@ -68,11 +68,12 @@ $('#user-location-search').on('click', function (e) {
       distanceService.getDistanceMatrix({
           // pulls location from global variable
           // not dynamically updating
+          // use filter function to sort out distance
           origins: [userLocation],
           destinations: ['40.727245342041,-73.9895823', '40.7644882,-73.98246'],
           travelMode: google.maps.TravelMode.WALKING,
           unitSystem: google.maps.UnitSystem.IMPERIAL,
-          // need to rework or change parameters to reflect walking times and routes
+          // need to rework or change parameters to reflect walking times and routes  
           durationInTraffic: true,
           avoidHighways: false,
           avoidTolls: false
