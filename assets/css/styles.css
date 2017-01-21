@@ -10,15 +10,9 @@ body, html {
   width: 100%;
   margin-top: 50px;
 }
-#search-location-form {
-display: inline;
-}
 
-#location-submit {
-  float: left;
 
-}
-
+/*LOCATION LIST START*/
 
 #location-list-module {
   margin-top: 50px;
@@ -30,7 +24,7 @@ display: inline;
 }
 
 .location-rating {
-  margin-right: 65px;
+  margin-right: 45px;
 }
 
 i.rating-stars {
@@ -39,7 +33,7 @@ i.rating-stars {
 
 .location-name {
   font-weight: 800;
-  font-size: 20px;
+  font-size: 18.5px;
 }
 
 .location-address {
@@ -54,3 +48,4 @@ i.rating-stars {
   background-color: #F44336;
   color: #fff;
 }
+/*LOCATION LIST END*/
