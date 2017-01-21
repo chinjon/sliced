@@ -37,8 +37,10 @@ var yelpApiCall = function(){
         position: {
           lat: businesses[prop].location.coordinate.latitude,
           lng: businesses[prop].location.coordinate.longitude
-        }
+        },
+        category: businesses[prop].categories
       })
+
     }
 
     db.ref('/pizza_shops').remove();
