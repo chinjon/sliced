@@ -1,4 +1,4 @@
-var Yelp = require('yelp');
+  var Yelp = require('yelp');
 var config = require('./config');
 var firebase = require('firebase');
 var fs = require('fs');
@@ -27,6 +27,7 @@ var yelpApiCall = function(){
   yelp.search({ term: 'dollar pizza', location: 'New york city' })
   .then(function (data) {
     businesses = data.businesses;
+
     for(let prop in businesses) {
       shop_info.push({
         name: businesses[prop].name,
@@ -38,6 +39,8 @@ var yelpApiCall = function(){
         }
       })
     }
+
+    db.ref('/pizza_shops').remove();
     shop_info.forEach(function(shop){
       db.ref('/pizza_shops').push({
         shop

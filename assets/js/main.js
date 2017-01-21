@@ -38,7 +38,6 @@ db.ref().on('value',function(snap){
     addMarker(data[place]);
     addInfo(data[place])
   }
-
   console.log(pizza_locations)
 })
 
