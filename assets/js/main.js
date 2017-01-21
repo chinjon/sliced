@@ -10,11 +10,6 @@ firebase.initializeApp(config);
 
 var ip;
 
-// $.get("http://ipinfo.io", function(response) {
-//   ip = response.ip;
-//   // console.log(ip)
-// }, "jsonp");
-
 $.ajax({
   url: 'http://ipinfo.io',
   method: 'GET',
@@ -26,55 +21,57 @@ $.ajax({
   console.log('inside ajax: ', ip.loc);
   latLngArray = ip.loc.split(",");
   console.log(ip.loc.split(","));
-  var marker = new google.maps.Marker({
-    position: {
-      lat: parseFloat(latLngArray[0]),
-      lng: parseFloat(latLngArray[1])
-    },
-    map: map,
-    shopName: 'You'
-  });
 })
 
 var db = firebase.database();
 var map = $('#map');
+var marker;
 var data;
+var pizza_locations = [];
 
 db.ref().on('value',function(snap){
+  console.log(snap.val());
   data = snap.val().pizza_shops;
 
-  var pizza_locations = [];
-
-  for(let prop in data){
-    pizza_locations.push(data[prop]);
+  for(let place in data){
+    pizza_locations.push(data[place]); //push object with location data from database to local array
+    addMarker(data[place]);
+    addInfo(data[place])
   }
-
-  pizza_locations.forEach(function(object){
-
-    var marker = new google.maps.Marker({
-      position: object.shop.position,
-      map: map,
-      shopName: object.shop.name
-    });
-
-    var infowindow = new google.maps.InfoWindow({
-      content: object.shop.name,
-      text: object.shop.snippet_text
-    });
-
-    marker.addListener('click', function() {
-      infowindow.open(map, marker);
-    });
-
-  })
+  console.log(pizza_locations)
 })
 
-function initMap() {
-  map = new google.maps.Map(map[0], {
-    center: {
-      lat: 40.7265884,
-      lng: -73.9716457
-    },
+// display options for map
+var mapOptions = {
+    center: {lat: 40.7265884, lng: -73.9716457},
     zoom: 13
+}
+
+//initializes and adds map to page
+function initMap() {
+  map = new google.maps.Map(map[0], mapOptions);
+}
+
+//adds marker at location of each establishment
+function addMarker(place) {
+  marker = new google.maps.Marker({
+    position: place.shop.position,
+    icon: {
+      url:'assets/img/pizza_icon.png',
+      scaledSize: new google.maps.Size(35, 35)
+    },
+    map: map
+  });
+  console.log(place)
+}
+
+//adds info window to marker
+function addInfo(place) {
+  var infowindow = new google.maps.InfoWindow({
+    content: '<h4>' + place.shop.name + '</h4>' + '<p>' + place.shop.snippet_text + '</p>'
+  });
+
+  marker.addListener('click', function() {
+    infowindow.open(map, this);
   });
 }
