@@ -6,7 +6,7 @@
   <meta charset="utf-8" />
   <!--  Materialize css -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
-    <!--Materialize Icons CDN-->
+  <!--Materialize Icons CDN-->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <!-- Font awesome css -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -28,11 +28,28 @@
   </nav>
   <div class="container">
     <div class="row">
-      <div class="input-field col s6 offset-s3">
-        <input id="address" type="text" class="validate">
-        <label for="address">Address</label>
-        <button class="waves-effect waves-light btn submit-button">Submit</button>
+      <div class="row">
+  <div class="col s12 m12 l12">
+    <div class="card-panel">
+      <div class="row">
+      <form class="col s12">
+        <div class="row">
+          <div class="input-field col s8">
+            <i class="mdi-action-lock-outline prefix"></i>
+            <input id="userLocationInput" type="text">
+            <label for="userLocationInput">Enter Location</label>
+          </div>
+          <div class="input-field col s4">
+            <div class="input-field col s12">
+              <button class="btn cyan waves-effect waves-light" type="submit" name="action" id="user-location-search"> Search</button>
+            </div>
+          </div>
+        </div>
+      </form>
       </div>
+    </div>
+  </div>
+</div>
     </div>
   </div>
   <div id="container">
@@ -41,19 +58,15 @@
         <div id="map">
         </div>
       </div>
-
       <!--LIST MODULE-->
       <div class="col m4">
         <ul class="collapsible" data-collapsible="accordion" id="location-list-module">
-
           <li>
             <div class="collapsible-header"><span class="location-name">1. First Location</span><span class="list-distance">0.2 miles</span><span class="location-rating"><i class="material-icons rating-stars">star</i>3</span></div>
             <div class="collapsible-body">
               <p class="location-address address-collapse">Address: 14th Street New York City, NY 00150</p>
             </div>
           </li>
-
-
           <li>
             <div class="collapsible-header"><span class="location-name">2. Second Location</span><span class="list-distance">0.2 miles</span><span class="location-rating"><i class="material-icons rating-stars">star</i>3</span></div>
             <div class="collapsible-body">
@@ -81,11 +94,10 @@
         </ul>
       </div>
       <!--END LIST MODULE-->
-
     </div>
   </div>
   <!--  Footer Div  -->
-  <footer class="page-footer light-blue lighten-1">
+  <footer class="page-footer red">
     <div class="container">
       <div class="row">
         <div class="col l6 s12">
@@ -97,7 +109,7 @@
           </div> -->
       </div>
     </div>
-    <div class="footer-copyright">
+    <div class="footer-copyright red darken-2">
       <div class="container">
         <div class="row">
           <div class="col m6 offset-m5">

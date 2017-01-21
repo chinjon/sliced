@@ -79,9 +79,9 @@ function moveToLocation(lat, lng){
     map.setZoom(15);
 }
 
-$('button').on('click', function (e) {
+$('#user-location-search').on('click', function (e) {
   e.preventDefault();
-  var input = $('#address').val().trim();
+  var input = $('#userLocationInput').val().trim();
   var userLocation = input;
   var key = 'AIzaSyAhVCu_gr8RKRpyAtvWqbtRb-DFyCvgqUM';
 
