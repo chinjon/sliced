@@ -17,10 +17,10 @@ $.ajax({
   async: false
 }).done(function (response) {
   ip = response;
-  console.log('inside ajax: ', ip.ip);
-  console.log('inside ajax: ', ip.loc);
+  // console.log('inside ajax: ', ip.ip);
+  // console.log('inside ajax: ', ip.loc);
   latLngArray = ip.loc.split(",");
-  console.log(ip.loc.split(","));
+  // console.log(ip.loc.split(","));
 })
 
 var db = firebase.database();
@@ -63,6 +63,28 @@ $('#user-location-search').on('click', function (e) {
     method: 'GET'
   }).done(function (data) {
 
+    function calcDistance(origin, destination) {
+  var distanceService = new google.maps.DistanceMatrixService();
+  distanceService.getDistanceMatrix({
+      // pulls location from global variable
+      // not dynamically updating
+      origins: [userLocation],
+      destinations: ['40.727245342041,-73.9895823', '40.7644882,-73.98246'],
+      travelMode: google.maps.TravelMode.DRIVING,
+      unitSystem: google.maps.UnitSystem.METRIC,
+      durationInTraffic: true,
+      avoidHighways: false,
+      avoidTolls: false
+    },
+    function (response, status) {
+      if (status !== google.maps.DistanceMatrixStatus.OK) {
+        console.log('Error:', status);
+      } else {
+        console.log(response);
+      }
+    });
+}
+
     var inputLong = data.results[0].geometry.location.lng;
     var inputLat = data.results[0].geometry.location.lat;
     moveToLocation(inputLat, inputLong);
@@ -70,13 +92,15 @@ $('#user-location-search').on('click', function (e) {
 
     // sets userLocation (global variable) to what user entered
     userLocation = origin;
+    console.log(userLocation);
+    calcDistance();
 
   })
 });
 
 
 db.ref().on('value', function (snap) {
-  console.log(snap.val());
+  // console.log(snap.val());
   data = snap.val().pizza_shops;
 
   for (let place in data) {
@@ -119,26 +143,27 @@ function addMarker(place) {
 // distance matrix function
     // is called when user enters location information
         // need to figure out how to pipe predefined locations into destinations key 
-function calcDistance(origin, destination) {
-  var distanceService = new google.maps.DistanceMatrixService();
-  distanceService.getDistanceMatrix({
-      // pulls location from global variable
-      origins: [userLocation],
-      destinations: ['40.7443525488053,40.7443525488053', '40.7644882,-73.98246'],
-      travelMode: google.maps.TravelMode.DRIVING,
-      unitSystem: google.maps.UnitSystem.METRIC,
-      durationInTraffic: true,
-      avoidHighways: false,
-      avoidTolls: false
-    },
-    function (response, status) {
-      if (status !== google.maps.DistanceMatrixStatus.OK) {
-        console.log('Error:', status);
-      } else {
-        console.log(response);
-      }
-    });
-}
+// function calcDistance(origin, destination) {
+//   var distanceService = new google.maps.DistanceMatrixService();
+//   distanceService.getDistanceMatrix({
+//       // pulls location from global variable
+//       // not dynamically updating
+//       origins: [userLocation],
+//       destinations: ['40.727245342041,-73.9895823', '40.7644882,-73.98246'],
+//       travelMode: google.maps.TravelMode.DRIVING,
+//       unitSystem: google.maps.UnitSystem.METRIC,
+//       durationInTraffic: true,
+//       avoidHighways: false,
+//       avoidTolls: false
+//     },
+//     function (response, status) {
+//       if (status !== google.maps.DistanceMatrixStatus.OK) {
+//         console.log('Error:', status);
+//       } else {
+//         console.log(response);
+//       }
+//     });
+// }
 
 
 //adds info window to marker
