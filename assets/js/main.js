@@ -15,61 +15,125 @@ $.ajax({
   method: 'GET',
   dataType: 'jsonp',
   async: false
-}).done(function(response){
+}).done(function (response) {
   ip = response;
-  console.log('inside ajax: ',ip.ip);
+  console.log('inside ajax: ', ip.ip);
   console.log('inside ajax: ', ip.loc);
   latLngArray = ip.loc.split(",");
   console.log(ip.loc.split(","));
-  var marker = new google.maps.Marker({
-    position: {
-      lat: parseFloat(latLngArray[0]),
-      lng: parseFloat(latLngArray[1])
-    },
-    map: map,
-    shopName: 'You'
-  });
 })
 
 var db = firebase.database();
 var map = $('#map');
+var marker;
 var data;
+var pizza_locations = [];
 
-db.ref().on('value',function(snap){
+db.ref().on('value', function (snap) {
   data = snap.val().pizza_shops;
 
   var pizza_locations = [];
 
-  for(let prop in data){
+  for (let prop in data) {
     pizza_locations.push(data[prop]);
   }
 
-  pizza_locations.forEach(function(object){
-
-    var marker = new google.maps.Marker({
-      position: object.shop.position,
-      map: map,
-      shopName: object.shop.name
-    });
-
-    var infowindow = new google.maps.InfoWindow({
-      content: object.shop.name,
-      text: object.shop.snippet_text
-    });
-
-    marker.addListener('click', function() {
-      infowindow.open(map, marker);
-    });
-
-  })
 })
 
-function initMap() {
-  map = new google.maps.Map(map[0], {
-    center: {
-      lat: 40.7265884,
-      lng: -73.9716457
-    },
+
+// obtain new long and lat and shift map view
+
+function moveToLocation(lat, lng){
+    var center = new google.maps.LatLng(lat, lng);
+
+    map.panTo(center);
+    map.setZoom(15);
+}
+
+$('#user-location-search').on('click', function (e) {
+  e.preventDefault();
+  var input = $('#userLocationInput').val().trim();
+  var userLocation = input;
+  var key = 'AIzaSyAhVCu_gr8RKRpyAtvWqbtRb-DFyCvgqUM';
+
+  $.ajax({
+    url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + userLocation + '&key=' + key,
+    method: 'GET'
+  }).done(function (data) {
+
+    var inputLong = data.results[0].geometry.location.lng;
+    var inputLat = data.results[0].geometry.location.lat;
+    moveToLocation(inputLat, inputLong);
+    calcDistance('Istanbul, Turkey', 'Ankara, Turkey');
+    // console.log("User lat: " + inputLat + " User long: " + inputLong);
+  })
+});
+
+
+db.ref().on('value',function(snap){
+  console.log(snap.val());
+  data = snap.val().pizza_shops;
+
+  for(let place in data){
+    pizza_locations.push(data[place]); //push object with location data from database to local array
+    addMarker(data[place]);
+    addInfo(data[place])
+  }
+  console.log(pizza_locations)
+})
+
+// display options for map
+var mapOptions = {
+    center: {lat: 40.7265884, lng: -73.9716457},
     zoom: 13
+}
+
+//initializes and adds map to page
+function initMap() {
+  map = new google.maps.Map(map[0], mapOptions);
+}
+
+//adds marker at location of each establishment
+function addMarker(place) {
+  marker = new google.maps.Marker({
+    position: place.shop.position,
+    icon: {
+      url:'assets/img/pizza_icon.png',
+      scaledSize: new google.maps.Size(35, 35)
+    },
+    map: map
+  });
+  console.log(place)
+}
+
+
+// function calcDistance(origin, destination) {
+// var distanceService = new google.maps.DistanceMatrixService();
+//     distanceService.getDistanceMatrix({
+//         origins: ['Istanbul, Turkey'],
+//         destinations: ['Ankara, Turkey'],
+//         travelMode: google.maps.TravelMode.DRIVING,
+//         unitSystem: google.maps.UnitSystem.METRIC,
+//         durationInTraffic: true,
+//         avoidHighways: false,
+//         avoidTolls: false
+//     },
+//     function (response, status) {
+//         if (status !== google.maps.DistanceMatrixStatus.OK) {
+//             console.log('Error:', status);
+//         } else {
+//             console.log(response);
+//         }
+//     });
+
+//adds info window to marker
+function addInfo(place) {
+  var infowindow = new google.maps.InfoWindow({
+    content: '<h4>' + place.shop.name + '</h4>' + '<p>' + place.shop.snippet_text + '</p>'
+  });
+
+  marker.addListener('click', function() {
+    infowindow.open(map, this);
   });
 }
+
