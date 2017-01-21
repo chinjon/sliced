@@ -93,7 +93,7 @@ $('button').on('click', function (e) {
     var inputLong = data.results[0].geometry.location.lng;
     var inputLat = data.results[0].geometry.location.lat;
     moveToLocation(inputLat, inputLong);
-
+    calcDistance('Istanbul, Turkey', 'Ankara, Turkey');
     // console.log("User lat: " + inputLat + " User long: " + inputLong);
   })
 });
@@ -107,4 +107,24 @@ function initMap() {
     },
     zoom: 13
   });
+}
+
+function calcDistance(origin, destination) {
+var distanceService = new google.maps.DistanceMatrixService();
+    distanceService.getDistanceMatrix({
+        origins: ['Istanbul, Turkey'],
+        destinations: ['Ankara, Turkey'],
+        travelMode: google.maps.TravelMode.DRIVING,
+        unitSystem: google.maps.UnitSystem.METRIC,
+        durationInTraffic: true,
+        avoidHighways: false,
+        avoidTolls: false
+    },
+    function (response, status) {
+        if (status !== google.maps.DistanceMatrixStatus.OK) {
+            console.log('Error:', status);
+        } else {
+            console.log(response);
+        }
+    });
 }
