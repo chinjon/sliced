@@ -20,9 +20,9 @@ $.ajax({
   method: 'GET',
   dataType: 'jsonp',
   async: false
-}).done(function(response){
+}).done(function (response) {
   ip = response;
-  console.log('inside ajax: ',ip.ip);
+  console.log('inside ajax: ', ip.ip);
   console.log('inside ajax: ', ip.loc);
   latLngArray = ip.loc.split(",");
   console.log(ip.loc.split(","));
@@ -40,16 +40,16 @@ var db = firebase.database();
 var map = $('#map');
 var data;
 
-db.ref().on('value',function(snap){
+db.ref().on('value', function (snap) {
   data = snap.val().pizza_shops;
 
   var pizza_locations = [];
 
-  for(let prop in data){
+  for (let prop in data) {
     pizza_locations.push(data[prop]);
   }
 
-  pizza_locations.forEach(function(object){
+  pizza_locations.forEach(function (object) {
 
     var marker = new google.maps.Marker({
       position: object.shop.position,
@@ -62,14 +62,43 @@ db.ref().on('value',function(snap){
       text: object.shop.snippet_text
     });
 
-    marker.addListener('click', function() {
+    marker.addListener('click', function () {
       infowindow.open(map, marker);
     });
 
   })
 })
 
+function moveToLocation(lat, lng){
+    var center = new google.maps.LatLng(lat, lng);
+
+    map.panTo(center);
+    map.setZoom(15);
+}
+
+$('button').on('click', function (e) {
+  e.preventDefault();
+  var input = $('#address').val().trim();
+  var userLocation = input;
+  var key = 'AIzaSyAhVCu_gr8RKRpyAtvWqbtRb-DFyCvgqUM';
+
+  $.ajax({
+    url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + userLocation + '&key=' + key,
+    method: 'GET'
+  }).done(function (data) {
+
+    var inputLong = data.results[0].geometry.location.lng;
+    var inputLat = data.results[0].geometry.location.lat;
+    moveToLocation(inputLat, inputLong);
+
+    // console.log("User lat: " + inputLat + " User long: " + inputLong);
+
+
+  })
+});
+
 function initMap() {
+
   map = new google.maps.Map(map[0], {
     center: {
       lat: 40.7265884,
