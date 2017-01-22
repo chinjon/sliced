@@ -1,4 +1,4 @@
-  var Yelp = require('yelp');
+var Yelp = require('yelp');
 var config = require('./config');
 var firebase = require('firebase');
 var fs = require('fs');
@@ -21,6 +21,7 @@ var yelp = new Yelp({
   token: config.TOKEN,
   token_secret: config.TOKEN_SECRET
 });
+
 var businessArray = [];
 var shop_info = []
 var yelpApiCall = function(){
@@ -36,8 +37,10 @@ var yelpApiCall = function(){
         position: {
           lat: businesses[prop].location.coordinate.latitude,
           lng: businesses[prop].location.coordinate.longitude
-        }
+        },
+        category: businesses[prop].categories
       })
+
     }
 
     db.ref('/pizza_shops').remove();
