@@ -57,3 +57,7 @@ i.rating-stars {
   text-decoration: line-through;
   opacity: 0.4
 }
+
+#user-location-search {
+  background-color: #4CAF50 !important;
+}
