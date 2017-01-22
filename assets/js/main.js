@@ -33,7 +33,6 @@ var userLocation = '40.7265884, -73.9716457';
 
 db.ref().on('value', function (snap) {
   data = snap.val().pizza_shops;
-
   var pizza_locations = [];
 
   for (let prop in data) {
@@ -41,6 +40,7 @@ db.ref().on('value', function (snap) {
   }
 
 })
+
 
 
 // obtain new long and lat and shift map view
@@ -52,16 +52,29 @@ function moveToLocation(lat, lng) {
   map.setZoom(15);
 }
 
+// creates global to store locations in array to push to distance matrix
+var stores;
+
 $('#user-location-search').on('click', function (e) {
   e.preventDefault();
   var input = $('#userLocationInput').val().trim();
   var userLocation = input;
   var key = 'AIzaSyAhVCu_gr8RKRpyAtvWqbtRb-DFyCvgqUM';
 
+  stores = [];
+
+  for (let i = 0; i < pizza_locations.length; i++) {
+    stores.push(pizza_locations[i].shop.position.lat + ',' + pizza_locations[i].shop.position.lng);
+  };
+
+  console.log(stores)
+
+
   $.ajax({
     url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + userLocation + '&key=' + key,
     method: 'GET'
   }).done(function (data) {
+
 
     function calcDistance(origin, destination) {
       var distanceService = new google.maps.DistanceMatrixService();
@@ -70,7 +83,7 @@ $('#user-location-search').on('click', function (e) {
           // not dynamically updating
           // use filter function to sort out distance
           origins: [userLocation],
-          destinations: ['40.727245342041,-73.9895823', '40.7644882,-73.98246'],
+          destinations: stores,
           travelMode: google.maps.TravelMode.WALKING,
           unitSystem: google.maps.UnitSystem.IMPERIAL,
           // need to rework or change parameters to reflect walking times and routes  
@@ -140,32 +153,6 @@ function addMarker(place) {
   // console.log(place)
 }
 
-
-
-// distance matrix function
-// is called when user enters location information
-// need to figure out how to pipe predefined locations into destinations key 
-// function calcDistance(origin, destination) {
-//   var distanceService = new google.maps.DistanceMatrixService();
-//   distanceService.getDistanceMatrix({
-//       // pulls location from global variable
-//       // not dynamically updating
-//       origins: [userLocation],
-//       destinations: ['40.727245342041,-73.9895823', '40.7644882,-73.98246'],
-//       travelMode: google.maps.TravelMode.DRIVING,
-//       unitSystem: google.maps.UnitSystem.METRIC,
-//       durationInTraffic: true,
-//       avoidHighways: false,
-//       avoidTolls: false
-//     },
-//     function (response, status) {
-//       if (status !== google.maps.DistanceMatrixStatus.OK) {
-//         console.log('Error:', status);
-//       } else {
-//         console.log(response);
-//       }
-//     });
-// }
 
 
 //adds info window to marker
