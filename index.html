@@ -1,65 +1,82 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-<head>
-  <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-  <meta charset="utf-8" />
-  <!--  Materialize css -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
-  <!--Materialize Icons CDN-->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <!-- Font awesome css -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <!--  Our own css  -->
-  <link rel="stylesheet" href="assets/css/styles.css">
-  <!--  Firebase inclusion  -->
-  <script src="https://www.gstatic.com/firebasejs/3.6.5/firebase.js"></script>
-  <title>Bite$ - Spend Wise While Having A Great Night!</title>
-</head>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <script src="https://www.gstatic.com/firebasejs/3.6.5/firebase.js"></script>
+    <title>Bitsie - Enjoy New York's Nightlife At A Bitsie Sized Cost!</title>
+  </head>
+  <body class="red darken-2">
+    <section id="section1" class="no-padding">
+    <!-- nav bar with info button -->
+      <nav class="transparent z-depth-0">
+        <div class="nav-wrapper transparent valign-wrapper">
+             <a class="waves-effect waves-light btn modal-trigger info_btn_color" href="#modal1">Info</a>
+        </div>
+      </nav>
 
-<body>
-  <nav class="red" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Bite<span id="green_logo_text">$</span><span id="grey_logo_text">$$$</span></a>
-      <ul class="right hide-on-med-and-down">
-        <li><a href="#">View Code</a></li>
-      </ul>
-      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-    </div>
-  </nav>
-  <div class="container">
-    <div class="row">
-      <div class="row">
-  <div class="col s12 m12 l12">
-    <div class="card-panel">
-      <div class="row">
-      <form class="col s12">
-        <div class="row">
-          <div class="input-field col s8">
-            <i class="mdi-action-lock-outline prefix"></i>
-            <input id="userLocationInput" type="text">
-            <label for="userLocationInput">Enter Location</label>
+     <!-- Modal Structure -->
+       <div id="modal1" class="modal">
+          <div class="modal-content">
+            <h4>Cheap Eats how to use</h4>
+            <p>info </p>
           </div>
-          <div class="input-field col s4">
-            <div class="input-field col s12">
-              <button class="btn cyan waves-effect waves-light" type="submit" name="action" id="user-location-search"> Search</button>
+          <div class="modal-footer">
+            <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">got it!</a>
+          </div>
+        </div>
+
+
+    <!-- container holding main content -->
+      <div class="container center">
+      <br>
+      <br>
+        <div class="pushdown-10p"></div>
+        <div class="row">
+          <div class="col s12">
+            <!-- insert logo here -->
+            <img class="image-title" src = "assets/img/logo.png">
+          </div>
+        </div>
+        <br>
+        <div class="container">
+          <div class="col s6 center black-text">
+            <h5 class="black-text no-margin roboto3000">Spend Wise While Having A Great Night!</h5>
+          </div>
+        </div>
+        <br>
+        <div class="container">
+          <div class="row">
+            <div class="col s12">
+              <!-- insert form for address or find my location button -->
+              <div class="input-field col s6 offset-m3">
+                <input id="userLocationInput" type="text" class="validate">
+                <label for="userLocationInput">Enter Location</label>
+                <a class="waves-effect waves-light btn submit-button" id="user-location-search">Submit</a>
+              </div>
+
+
             </div>
           </div>
         </div>
-      </form>
       </div>
-    </div>
-  </div>
-</div>
-    </div>
-  </div>
-  <div class="container">
-    <div class="row">
-      <div class="col m8">
-        <div id="map">
-        </div>
-      </div>
-      <!--LIST MODULE-->
-      <div class="col m4">
+      <img class="overlay-ground" src="assets/img/overlay.png">
+  </section>
+
+
+  <section id="section2" class="no-padding">
+    <div id="container">
+      <div class="row">
+        <div class="col m10 offset-m1">
+            <div class="col m8">
+              <div id="map" >
+              </div>
+            </div>
+            <div class="col m4">
         <ul class="collapsible" data-collapsible="accordion" id="location-list-module">
           <li>
             <div class="collapsible-header "><span class="location-name">1. First Location</span><span class="list-distance">0.2 miles</span><span class="location-rating"><i class="material-icons rating-stars">star</i>3</span></div>
@@ -94,40 +111,27 @@
         </ul>
       </div>
       <!--END LIST MODULE-->
-    </div>
-  </div>
-  <!--  Footer Div  -->
-  <footer class="page-footer red">
-    <div class="container">
-      <div class="row">
-        <div class="col l6 s12">
-          <h5 class="white-text">Footer Content</h5>
-          <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
         </div>
-        <!-- <div class="col l4 offset-l2 s12">
+      </div>
+    </div>
+  </section>
 
-          </div> -->
-      </div>
-    </div>
-    <div class="footer-copyright red darken-2">
-      <div class="container">
-        <div class="row">
-          <div class="col m6 offset-m5">
-            Coded With <i class="fa fa-heart"></i> & <strong>PATIENCE</strong>
+  <footer class="page-footer">
+          <div class="footer-copyright">
+            <div class="container">
+            © 2014 Copyright Text
+            <!--
+            <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+            -->
+            </div>
           </div>
-        </div>
-      </div>
-    </div>
-  </footer>
-  <!--  jQuery  -->
-  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-    crossorigin="anonymous"></script>
-    <!--  Marker Cluster Js  -->
-  <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
-    <!--  Google Maps Api  -->
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAhVCu_gr8RKRpyAtvWqbtRb-DFyCvgqUM&callback=initMap"></script>
-    <!--  Materialize Js -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
-  <script type="text/javascript" src="assets/js/main.js"></script>
-</body>
+     </footer>
+
+
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAhVCu_gr8RKRpyAtvWqbtRb-DFyCvgqUM&callback=initMap"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+    <script type="text/javascript" src="assets/js/main.js"></script>
+  </body>
 </html>
