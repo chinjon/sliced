@@ -11,6 +11,8 @@
     <title>Bitsie - Enjoy New York's Nightlife At A Bitsie Sized Cost!</title>
   </head>
   <body class="red darken-2">
+
+    <!-- SECTION 1 -->
     <section id="section1" class="no-padding">
     <!-- nav bar with info button -->
       <nav class="transparent z-depth-0">
@@ -20,16 +22,15 @@
       </nav>
 
      <!-- Modal Structure -->
-       <div id="modal1" class="modal">
-          <div class="modal-content">
-            <h4>Cheap Eats how to use</h4>
-            <p>info </p>
-          </div>
-          <div class="modal-footer">
-            <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">got it!</a>
-          </div>
+      <div id="modal1" class="modal">
+        <div class="modal-content">
+          <h4>Cheap Eats how to use</h4>
+          <p>info </p>
         </div>
-
+        <div class="modal-footer">
+          <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">got it!</a>
+        </div>
+      </div>
 
     <!-- container holding main content -->
       <div class="container center">
@@ -53,7 +54,7 @@
           <div class="row">
             <div class="col s12">
               <!-- insert form for address or find my location button -->
-              <div class="input-field col s6 offset-m3">
+              <div class="input-field">
                 <input id="userLocationInput" type="text" class="validate">
                 <label for="userLocationInput">Enter Location</label>
                 <a class="waves-effect waves-light btn submit-button" id="user-location-search">Submit</a>
@@ -62,70 +63,94 @@
           </div>
         </div>
       </div>
-      <img class="overlay-ground" src="assets/img/overlay.png">
-  </section>
+      <img class="overlay-ground" src="assets/img/overlay.png"/>
+    </section> <!-- END SECTION 1 -->
 
-
-  <section id="section2" class="no-padding">
-    <div id="container">
-      <div class="row">
-        <div class="col m10 offset-m1">
-            <div class="col m8">
-              <div id="map" >
+    <!-- SECTION 2 -->
+    <section id="section2" class="no-padding">
+      <div id="container">
+        <div class="row">
+          <div class="col s12">
+          
+            <!-- GOOGLE MAP -->
+            <div class="col s12 m7 l8">
+              <div id="map">
               </div>
-            </div>
-            <div class="col m4">
-        <ul class="collapsible" data-collapsible="accordion" id="location-list-module">
-          <li>
-            <div class="collapsible-header "><span class="location-name">1. First Location</span><span class="list-distance">0.2 miles</span><span class="location-rating"><i class="material-icons rating-stars">star</i>3</span></div>
-            <div class="collapsible-body">
-              <p class="location-address address-collapse">Address: 14th Street New York City, NY 00150</p>
-            </div>
-          </li>
-          <li>
-            <div class="collapsible-header"><span class="location-name">2. Second Location</span><span class="list-distance">0.2 miles</span><span class="location-rating"><i class="material-icons rating-stars">star</i>3</span></div>
-            <div class="collapsible-body">
-              <p class="location-address address-collapse">Address: 14th Street New York City, NY 00150</p>
-            </div>
-          </li>
-          <li>
-            <div class="collapsible-header"><span class="location-name">3. Third Location</span><span class="list-distance">0.2 miles</span><span class="location-rating"><i class="material-icons rating-stars">star</i>3</span></div>
-            <div class="collapsible-body">
-              <p class="location-address address-collapse">Address: 14th Street New York City, NY 00150</p>
-            </div>
-          </li>
-          <li>
-            <div class="collapsible-header"><span class="location-name">4. Fourth Location</span><span class="list-distance">0.2 miles</span><span class="location-rating"><i class="material-icons rating-stars">star</i>3</span></div>
-            <div class="collapsible-body">
-              <p class="location-address address-collapse">Address: 14th Street New York City, NY 00150</p>
-            </div>
-          </li>
-          <li>
-            <div class="collapsible-header"><span class="location-name">5. Fifth Location</span><span class="list-distance">0.2 miles</span><span class="location-rating"><i class="material-icons rating-stars">star</i>3</span></div>
-            <div class="collapsible-body address-collapse">
-              <p class="location-address">Address: 14th Street New York City, NY 00150</p>
-            </div>
-          </li>
-        </ul>
-      </div>
-      <!--END LIST MODULE-->
+            </div> <!-- MAP -->
+
+            <!-- LIST MODULE -->
+            <div class="col s12 m5 l4">
+              <ul class="collapsible" data-collapsible="accordion" id="location-list-module">
+                <li>
+                  <div class="collapsible-header ">
+                    <span class="location-name">1. First Location</span>
+                    <span class="list-distance">0.2 miles</span>
+                    <span class="location-rating"><i class="material-icons rating-stars">star</i>3</span>
+                  </div>
+                  <div class="collapsible-body">
+                    <p class="location-address address-collapse">Address: 14th Street New York City, NY 00150</p>
+                  </div>
+                </li>
+                <li>
+                  <div class="collapsible-header">
+                    <span class="location-name">2. Second Location</span>
+                    <span class="list-distance">0.2 miles</span>
+                    <span class="location-rating"><i class="material-icons rating-stars">star</i>3</span>
+                  </div>
+                  <div class="collapsible-body">
+                    <p class="location-address address-collapse">Address: 14th Street New York City, NY 00150</p>
+                  </div>
+                </li>
+                <li>
+                  <div class="collapsible-header">
+                    <span class="location-name">3. Third Location</span>
+                    <span class="list-distance">0.2 miles</span>
+                    <span class="location-rating"><i class="material-icons rating-stars">star</i>3</span>
+                  </div>
+                  <div class="collapsible-body">
+                    <p class="location-address address-collapse">Address: 14th Street New York City, NY 00150</p>
+                  </div>
+                </li>
+                <li>
+                  <div class="collapsible-header">
+                    <span class="location-name">4. Fourth Location</span>
+                    <span class="list-distance">0.2 miles</span>
+                    <span class="location-rating"><i class="material-icons rating-stars">star</i>3</span>
+                  </div>
+                  <div class="collapsible-body">
+                    <p class="location-address address-collapse">Address: 14th Street New York City, NY 00150</p>
+                  </div>
+                </li>
+                <li>
+                  <div class="collapsible-header">
+                    <span class="location-name">5. Fifth Location</span>
+                    <span class="list-distance">0.2 miles</span>
+                    <span class="location-rating"><i class="material-icons rating-stars">star</i>3</span>
+                  </div>
+                  <div class="collapsible-body address-collapse">
+                    <p class="location-address">Address: 14th Street New York City, NY 00150</p>
+                  </div>
+                </li>
+              </ul>
+            </div> <!--END LIST MODULE-->
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section> <!-- END SECTION 2 -->
 
-  <footer class="page-footer">
-          <div class="footer-copyright">
-            <div class="container">
-            © 2014 Copyright Text
-            <!--
-            <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
-            -->
-            </div>
-          </div>
-     </footer>
+    <!-- FOOTER -->
+    <footer class="page-footer">
+      <div class="footer-copyright">
+        <div class="container">
+        © 2017 Copyright Text
+        <!--
+        <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+        -->
+        </div>
+      </div>
+    </footer> <!-- END FOOTER -->
 
-
+    <!-- SCRIPTS -->
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAhVCu_gr8RKRpyAtvWqbtRb-DFyCvgqUM&callback=initMap"></script>
