@@ -1,3 +1,14 @@
+$(document).ready(function(){
+    // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+    $('.modal').modal();
+  });
+
+$(".submit-button, .findLocation").click(function() {
+    $('html,body').animate({
+        scrollTop: $("#section2").offset().top},
+        'slow');
+});
+
 var config = {
   apiKey: "AIzaSyC7IuiZeD4Fk_Z5VUp4Y3Rq_U1LTVbSw8s",
   authDomain: "sliced-8f528.firebaseapp.com",
@@ -70,10 +81,12 @@ $('#user-location-search').on('click', function (e) {
   console.log(stores)
 
 
+
   $.ajax({
     url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + userLocation + '&key=' + key,
     method: 'GET'
   }).done(function (data) {
+
 
 
     function calcDistance(origin, destination) {
