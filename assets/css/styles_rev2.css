@@ -1,0 +1,72 @@
+body, html {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+
+}
+
+/*#map {
+  height: 100%;
+  width: 100%;
+}*/
+main {
+    flex: 1 0 auto;
+  }
+
+
+#map {
+  height: 450px;
+  width: 100%;
+  /*margin-left: 210px;*/
+  margin-top: 50px;
+  /*margin-bottom: 50px;*/
+
+}
+
+.collapsible{
+  height:450px;
+  margin-top: 50px;
+  background-color:white;
+}
+
+nav {
+  height:40px;
+  position: fixed;
+  top: 0px;
+}
+
+.infobtn {
+  background-color: transparent;
+  color: black;
+}
+
+#section2 {
+  width: 100%;
+  padding: 0 7%;
+  display: table;
+  margin: 0;
+  max-width: none;
+  background-color: #f44336;
+  height: 90vh;
+}
+
+.image-title{
+  width:60%;
+}
+
+.overlay-ground {
+    width: 100%;
+}
+
+#section1 {
+  width: 100%;
+  padding: 0 7%;
+  display: table;
+  margin: 0;
+  max-width: none;
+  background-color: #ffff8d;
+  height: 100vh;
+}
