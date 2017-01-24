@@ -23,8 +23,9 @@ var yelp = new Yelp({
 });
 
 var businessArray = [];
-var shop_info = []
-var yelpApiCall = function(){
+var shop_info = [];
+var bar_info =[];
+var yelpApiCall = function() {
   yelp.search({ term: 'dollar pizza', location: 'New york city' })
   .then(function (data) {
     businesses = data.businesses;
@@ -40,13 +41,40 @@ var yelpApiCall = function(){
         },
         category: businesses[prop].categories
       })
-
     }
 
     db.ref('/pizza_shops').remove();
-    shop_info.forEach(function(shop){
+    shop_info.forEach(function(shop) {
       db.ref('/pizza_shops').push({
         shop
+      })
+    })
+  })
+  .catch(function (err) {
+    console.error(err);
+  });
+
+  yelp.search({ term: 'cheap drinks', location: 'New york city' })
+  .then(function (data) {
+    businesses = data.businesses;
+
+    for(let prop in businesses) {
+      bar_info.push({
+        name: businesses[prop].name,
+        rating: businesses[prop].rating,
+        snippet_text: businesses[prop].snippet_text,
+        position: {
+          lat: businesses[prop].location.coordinate.latitude,
+          lng: businesses[prop].location.coordinate.longitude
+        },
+        category: businesses[prop].categories
+      })
+    }
+
+    db.ref('/bars').remove();
+    bar_info.forEach(function(bar) {
+      db.ref('/bars').push({
+        bar
       })
     })
   })
