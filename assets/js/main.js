@@ -39,6 +39,7 @@ var map = $('#map');
 var marker;
 var data;
 var pizza_locations = [];
+var bar_locations = [];
 
 var userLocation = '40.7265884, -73.9716457';
 
@@ -126,17 +127,21 @@ $('#user-location-search').on('click', function (e) {
   })
 });
 
-
 db.ref().on('value', function (snap) {
-  // console.log(snap.val());
-  data = snap.val().pizza_shops;
+  shopData = snap.val().pizza_shops;
+  barData = snap.val().bars;
 
-  for (let place in data) {
-    pizza_locations.push(data[place]); //push object with location data from database to local array
-    addMarker(data[place]);
-    addInfo(data[place])
+  for (let place in shopData) {
+    pizza_locations.push(shopData[place]); //push object with location data from database to local array
+    addShopMarker(shopData[place].shop);
+    addInfo(shopData[place].shop)
   }
-  // console.log(pizza_locations)
+  for (let place in barData) {
+    bar_locations.push(barData[place]); //push object with location data from database to local array
+    addBarMarker(barData[place].bar);
+    addInfo(barData[place].bar)
+  }
+  console.log(pizza_locations)
 })
 
 // display options for map
@@ -154,9 +159,9 @@ function initMap() {
 }
 
 //adds marker at location of each establishment
-function addMarker(place) {
+function addShopMarker(place) {
   marker = new google.maps.Marker({
-    position: place.shop.position,
+    position: place.position,
     icon: {
       url: 'assets/img/pizza_icon.png',
       scaledSize: new google.maps.Size(35, 35)
@@ -166,12 +171,23 @@ function addMarker(place) {
   // console.log(place)
 }
 
-
+function addBarMarker(place) {
+  marker = new google.maps.Marker({
+    position: place.position,
+    icon: {
+      url: 'assets/img/bar_icon.png',
+      scaledSize: new google.maps.Size(35, 35)
+    },
+    map: map
+  });
+  // console.log(place)
+}
 
 //adds info window to marker
 function addInfo(place) {
   var infowindow = new google.maps.InfoWindow({
-    content: '<h4>' + place.shop.name + '</h4>' + '<p>' + place.shop.snippet_text + '</p>'
+    content: '<h5>' + place.name + '</h5>' + '<p>' + place.snippet_text + '</p>',
+    maxWidth: 200
   });
 
   marker.addListener('click', function () {
