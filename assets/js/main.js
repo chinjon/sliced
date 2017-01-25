@@ -118,14 +118,12 @@ $('#user-location-search').on('click', function (e) {
             // distances are converted from meters to miles and pushed to distArr
             for (var i = 0; i < response.rows[0].elements.length; i++) {
               // creates a new object with distance and store name and pushes to array
-              distArr.push(
-                {
+              distArr.push({
                 storeName: pizza_locations[i].shop.name,
                 distance: (response.rows[0].elements[i].distance.value * 0.000621).toFixed(1),
                 rating: pizza_locations[i].shop.rating
 
-              }
-              );
+              });
             }
 
             // sorts distances within distArr
@@ -133,9 +131,10 @@ $('#user-location-search').on('click', function (e) {
               return a.distance - b.distance;
             });
             console.log(distArr);
-            // iterate to list module
 
-            for(let j = 0; j < 5;j++) {
+
+            // iterate to list module and pushes the 5 closest to the list module
+            for (let j = 0; j < 5; j++) {
               var newListItem = $('<li>');
               var newCollapseHeader = $('<div>');
               newCollapseHeader.attr("class", "collapsible-header ")
@@ -143,7 +142,7 @@ $('#user-location-search').on('click', function (e) {
               locName.attr("class", "location-name");
               var locDistance = $('<span>');
               locDistance.attr("class", "list-distance");
-              
+
               var newCollapseBody = $('<div>');
               newCollapseBody.attr("class", "collapsible-body")
               var newLocationAddress = $('<p>');
@@ -152,7 +151,7 @@ $('#user-location-search').on('click', function (e) {
               locDistance.html(distArr[j].distance);
               newCollapseHeader.append(locName);
               newCollapseHeader.append(locDistance);
-              
+
               newListItem.append(newCollapseHeader);
               newListItem.append(newCollapseBody);
 
