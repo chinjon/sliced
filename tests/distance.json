@@ -1,0 +1,211 @@
+{
+    "rows": [
+        {
+        "elements": [
+            
+            {
+            "distance": {
+                "text": "2.6 mi",
+                // value = meters
+                "value": 4262
+            },
+            "duration": {
+                "text": "55 mins",
+                "value": 3288
+            },
+            "status": "OK"
+        }, {
+            "distance": {
+                "text": "2.2 mi",
+                "value": 3563
+            },
+            "duration": {
+                "text": "46 mins",
+                "value": 2730
+            },
+            "status": "OK"
+        }, {
+            "distance": {
+                "text": "0.5 mi",
+                "value": 769
+            },
+            "duration": {
+                "text": "10 mins",
+                "value": 588
+            },
+            "status": "OK"
+        }, {
+            "distance": {
+                "text": "1.1 mi",
+                "value": 1780
+            },
+            "duration": {
+                "text": "23 mins",
+                "value": 1357
+            },
+            "status": "OK"
+        }, {
+            "distance": {
+                "text": "1.7 mi",
+                "value": 2688
+            },
+            "duration": {
+                "text": "34 mins",
+                "value": 2067
+            },
+            "status": "OK"
+        }, {
+            "distance": {
+                "text": "1.7 mi",
+                "value": 2789
+            },
+            "duration": {
+                "text": "35 mins",
+                "value": 2124
+            },
+            "status": "OK"
+        }, {
+            "distance": {
+                "text": "1.3 mi",
+                "value": 2083
+            },
+            "duration": {
+                "text": "26 mins",
+                "value": 1581
+            },
+            "status": "OK"
+        }, {
+            "distance": {
+                "text": "1.3 mi",
+                "value": 2058
+            },
+            "duration": {
+                "text": "26 mins",
+                "value": 1588
+            },
+            "status": "OK"
+        }, {
+            "distance": {
+                "text": "1.0 mi",
+                "value": 1566
+            },
+            "duration": {
+                "text": "20 mins",
+                "value": 1199
+            },
+            "status": "OK"
+        }, {
+            "distance": {
+                "text": "2.1 mi",
+                "value": 3349
+            },
+            "duration": {
+                "text": "43 mins",
+                "value": 2572
+            },
+            "status": "OK"
+        }, {
+            "distance": {
+                "text": "0.3 mi",
+                "value": 474
+            },
+            "duration": {
+                "text": "6 mins",
+                "value": 376
+            },
+            "status": "OK"
+        }, {
+            "distance": {
+                "text": "2.5 mi",
+                "value": 3967
+            },
+            "duration": {
+                "text": "51 mins",
+                "value": 3043
+            },
+            "status": "OK"
+        }, {
+            "distance": {
+                "text": "0.8 mi",
+                "value": 1357
+            },
+            "duration": {
+                "text": "17 mins",
+                "value": 1025
+            },
+            "status": "OK"
+        }, {
+            "distance": {
+                "text": "1.0 mi",
+                "value": 1629
+            },
+            "duration": {
+                "text": "21 mins",
+                "value": 1246
+            },
+            "status": "OK"
+        }, {
+            "distance": {
+                "text": "3.2 mi",
+                "value": 5217
+            },
+            "duration": {
+                "text": "1 hour 6 mins",
+                "value": 3932
+            },
+            "status": "OK"
+        }, {
+            "distance": {
+                "text": "3.3 mi",
+                "value": 5385
+            },
+            "duration": {
+                "text": "1 hour 8 mins",
+                "value": 4056
+            },
+            "status": "OK"
+        }, {
+            "distance": {
+                "text": "1.2 mi",
+                "value": 1992
+            },
+            "duration": {
+                "text": "25 mins",
+                "value": 1507
+            },
+            "status": "OK"
+        }, {
+            "distance": {
+                "text": "2.8 mi",
+                "value": 4559
+            },
+            "duration": {
+                "text": "58 mins",
+                "value": 3498
+            },
+            "status": "OK"
+        }, {
+            "distance": {
+                "text": "1.3 mi",
+                "value": 2100
+            },
+            "duration": {
+                "text": "27 mins",
+                "value": 1600
+            },
+            "status": "OK"
+        }, {
+            "distance": {
+                "text": "2.5 mi",
+                "value": 4039
+            },
+            "duration": {
+                "text": "51 mins",
+                "value": 3069
+            },
+            "status": "OK"
+        }]
+    }],
+    "originAddresses": ["400 E 14th St, New York, NY 10009, USA"],
+    "destinationAddresses": ["1721 Broadway, New York, NY 10019, USA", "31 W 46th St, New York, NY 10036, USA", "34A St Marks Pl, New York, NY 10003, USA", "401 6th Ave, New York, NY 10014, USA", "59-65 White St, New York, NY 10013, USA", "142-154 E 43rd St, New York, NY 10017, USA", "98 Macdougal St, New York, NY 10012, USA", "100-108 W 25th St, New York, NY 10001, USA", "121 Rivington St, New York, NY 10002, USA", "301-305 W 38th St, New York, NY 10018, USA", "146 E 14th St, New York, NY 10003, USA", "402 W 43rd St, New York, NY 10036, USA", "244 E 28th St, New York, NY 10016, USA", "600-604 6th Ave, New York, NY 10011, USA", "48-52 Willoughby St, Brooklyn, NY 11201, USA", "367-395 Flatbush Ave Ext, Brooklyn, NY 11201, USA", "200 E 34th St, New York, NY 10016, USA", "781 9th Ave, New York, NY 10019, USA", "7 Carmine St, New York, NY 10014, USA", "1-5 Hanover Square, New York, NY 10004, USA"]
+}
