@@ -121,20 +121,46 @@ $('#user-location-search').on('click', function (e) {
               distArr.push(
                 {
                 storeName: pizza_locations[i].shop.name,
-                distance: (response.rows[0].elements[i].distance.value * 0.000621).toFixed(1)
+                distance: (response.rows[0].elements[i].distance.value * 0.000621).toFixed(1),
+                rating: pizza_locations[i].shop.rating
 
               }
               );
             }
 
-            
-
             // sorts distances within distArr
             distArr.sort(function (a, b) {
               return a.distance - b.distance;
             });
-
             console.log(distArr);
+            // iterate to list module
+
+            for(let j = 0; j < 5;j++) {
+              var newListItem = $('<li>');
+              var newCollapseHeader = $('<div>');
+              newCollapseHeader.attr("class", "collapsible-header ")
+              var locName = $('<span>');
+              locName.attr("class", "location-name");
+              var locDistance = $('<span>');
+              locDistance.attr("class", "list-distance");
+              
+              var newCollapseBody = $('<div>');
+              newCollapseBody.attr("class", "collapsible-body")
+              var newLocationAddress = $('<p>');
+
+              locName.html(distArr[j].storeName);
+              locDistance.html(distArr[j].distance);
+              newCollapseHeader.append(locName);
+              newCollapseHeader.append(locDistance);
+              
+              newListItem.append(newCollapseHeader);
+              newListItem.append(newCollapseBody);
+
+              $('#location-list-module').append(newListItem);
+            }
+
+
+
           }
         });
     }
