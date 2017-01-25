@@ -1,12 +1,13 @@
-$(document).ready(function(){
-    // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
-    $('.modal').modal();
-  });
+$(document).ready(function () {
+  // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+  $('.modal').modal();
+});
 
-$(".submit-button, .findLocation").click(function() {
-    $('html,body').animate({
-        scrollTop: $("#section2").offset().top},
-        'slow');
+$(".submit-button, .findLocation").click(function () {
+  $('html,body').animate({
+      scrollTop: $("#section2").offset().top
+    },
+    'slow');
 });
 
 var config = {
@@ -108,7 +109,32 @@ $('#user-location-search').on('click', function (e) {
           if (status !== google.maps.DistanceMatrixStatus.OK) {
             console.log('Error:', status);
           } else {
-            console.log(response);
+
+            // store distances 
+            var distArr = [];
+
+            // 1 meter = 0.000621 miles
+            // iterates through data and returns the distances calculated for each location against current location
+            // distances are converted from meters to miles and pushed to distArr
+            for (var i = 0; i < response.rows[0].elements.length; i++) {
+              // creates a new object with distance and store name and pushes to array
+              distArr.push(
+                {
+                storeName: pizza_locations[i].shop.name,
+                distance: (response.rows[0].elements[i].distance.value * 0.000621).toFixed(1)
+
+              }
+              );
+            }
+
+            
+
+            // sorts distances within distArr
+            distArr.sort(function (a, b) {
+              return a.distance - b.distance;
+            });
+
+            console.log(distArr);
           }
         });
     }
