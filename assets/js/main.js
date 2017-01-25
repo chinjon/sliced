@@ -3,6 +3,7 @@ $(document).ready(function () {
   $('.modal').modal();
 });
 
+
 $(".submit-button, .findLocation").click(function () {
   $('html,body').animate({
       scrollTop: $("#section2").offset().top
@@ -113,6 +114,7 @@ $('#user-location-search').on('click', function (e) {
             // store distances 
             var distArr = [];
 
+
             // 1 meter = 0.000621 miles
             // iterates through data and returns the distances calculated for each location against current location
             // distances are converted from meters to miles and pushed to distArr
@@ -120,6 +122,7 @@ $('#user-location-search').on('click', function (e) {
               // creates a new object with distance and store name and pushes to array
               distArr.push({
                 storeName: pizza_locations[i].shop.name,
+                location: pizza_locations[i].shop.position.lat + "," + pizza_locations[i].shop.position.lng,
                 distance: (response.rows[0].elements[i].distance.value * 0.000621).toFixed(1),
                 rating: pizza_locations[i].shop.rating
 
@@ -133,9 +136,16 @@ $('#user-location-search').on('click', function (e) {
             console.log(distArr);
 
 
+
+
+
+            $("#location-list-module").empty();
             // iterate to list module and pushes the 5 closest to the list module
             for (let j = 0; j < 5; j++) {
+
+
               var newListItem = $('<li>');
+              newListItem.attr("data-location", distArr[j].location);
               var newCollapseHeader = $('<div>');
               newCollapseHeader.attr("class", "collapsible-header ")
               var locName = $('<span>');
@@ -158,9 +168,52 @@ $('#user-location-search').on('click', function (e) {
               $('#location-list-module').append(newListItem);
             }
 
+            // TESTING DIRECTIONS
+            var directionsDisplay;
+            var directionsService;
+            var stepDisplay;
+
+            $('li').on("click", function () {
+              directionsService = new google.maps.DirectionsService();
+
+              startLoc = $(this).data('location');
+              console.log("Clicked: " + startLoc);
+              console.log("User Location: " + userLocation);
+
+              function displayRoute() {
+
+                var start = new google.maps.LatLng(40.7644882, -73.98246);
+                var end = new google.maps.LatLng(40.7644882,-73.98246);
+
+                var directionsDisplay = new google.maps.DirectionsRenderer(); // also, constructor can get "DirectionsRendererOptions" object
+                directionsDisplay.setMap(map); // map should be already initialized.
+
+                var request = {
+                  origin: start,
+                  destination: end,
+                  travelMode: google.maps.TravelMode.WALKING
+                };
+                var directionsService = new google.maps.DirectionsService();
+                directionsService.route(request, function (response, status) {
+                  if (status == google.maps.DirectionsStatus.OK) {
+                    directionsDisplay.setDirections(response);
+                    console.log(response);
+                  }
+                });
+              }
+
+              displayRoute();
+            });
+
+
 
 
           }
+
+
+
+
+
         });
     }
 
@@ -171,7 +224,7 @@ $('#user-location-search').on('click', function (e) {
 
     // sets userLocation (global variable) to what user entered
     userLocation = origin;
-    console.log(userLocation);
+    //console.log(userLocation);
     calcDistance();
 
   })
