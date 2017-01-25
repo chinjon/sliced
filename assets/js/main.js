@@ -176,28 +176,26 @@ $('#user-location-search').on('click', function (e) {
             $('li').on("click", function () {
               directionsService = new google.maps.DirectionsService();
 
-              startLoc = $(this).data('location');
-              console.log("Clicked: " + startLoc);
-              console.log("User Location: " + userLocation);
+              selectedLocation = $(this).data('location');
+             
 
               function displayRoute() {
 
-                var start = new google.maps.LatLng(40.7644882, -73.98246);
-                var end = new google.maps.LatLng(40.7644882,-73.98246);
+                
 
                 var directionsDisplay = new google.maps.DirectionsRenderer(); // also, constructor can get "DirectionsRendererOptions" object
                 directionsDisplay.setMap(map); // map should be already initialized.
 
                 var request = {
-                  origin: start,
-                  destination: end,
+                  origin: userLocation,
+                  destination: selectedLocation,
                   travelMode: google.maps.TravelMode.WALKING
                 };
                 var directionsService = new google.maps.DirectionsService();
                 directionsService.route(request, function (response, status) {
                   if (status == google.maps.DirectionsStatus.OK) {
                     directionsDisplay.setDirections(response);
-                    console.log(response);
+                    console.log(JSON.stringify(response));
                   }
                 });
               }
