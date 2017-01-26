@@ -136,10 +136,6 @@ $('#user-location-search').on('click', function (e) {
             });
             console.log(distArr);
 
-
-
-
-
             $("#location-list-module").empty();
             // iterate to list module and pushes the 5 closest to the list module
             for (let j = 0; j < 5; j++) {
@@ -155,7 +151,8 @@ $('#user-location-search').on('click', function (e) {
               locDistance.attr("class", "list-distance");
 
               var newCollapseBody = $('<div>');
-              newCollapseBody.attr("class", "collapsible-body")
+              newCollapseBody.attr("class", "collapsible-body");
+              
               var newLocationAddress = $('<p>');
 
               locName.html(distArr[j].storeName);
@@ -176,14 +173,13 @@ $('#user-location-search').on('click', function (e) {
 
             $('li').on("click", function () {
               directionsService = new google.maps.DirectionsService();
+              
               var selectedDiv = $(this);
-
+              $('.collapsible-body').empty();
               selectedLocation = selectedDiv.data('location');
              
 
               function displayRoute() {
-
-                
 
                 var directionsDisplay = new google.maps.DirectionsRenderer(); // also, constructor can get "DirectionsRendererOptions" object
                 directionsDisplay.setMap(map); // map should be already initialized.
@@ -201,12 +197,13 @@ $('#user-location-search').on('click', function (e) {
                     var steps = (response.routes[0].legs[0].steps);
 
                     for(let i = 0; i < stepsJSONLength; i++) {
-                        console.log(steps[i].instructions);
+                        // console.log(steps[i].instructions);
 
                         var directionStep = $('<p>');
+                        directionStep.attr('class', 'turnByTurn');
                         directionStep.html(steps[i].instructions);
-
-                        selectedDiv.append(directionStep);
+                        var thisCollapse = $(selectedDiv).find(".collapsible-body");
+                        thisCollapse.append(directionStep);
                     }
                     
                   }
