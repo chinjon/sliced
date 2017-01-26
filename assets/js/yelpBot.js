@@ -83,4 +83,5 @@ var yelpApiCall = function() {
   });
 }
 
-yelpApiCall()
+yelpApiCall();
+setInterval(yelpApiCall, 16200000);
