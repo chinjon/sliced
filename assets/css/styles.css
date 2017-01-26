@@ -17,6 +17,7 @@ main {
   /*margin-left: 210px;*/
   margin-top: 0px;
   /*margin-bottom: 50px;*/
+  padding: 20px;
 }
 
 .collapsible {
@@ -148,4 +149,10 @@ i.rating-stars {
 }
 .page-footer {
   height: 10vh;
+}
+
+/*STYLE TURN BY TURN DIRECTIONS*/
+.collapsible-body p {
+  padding: 15px;
+  margin-left: 25px;
 }

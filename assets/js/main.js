@@ -1,13 +1,14 @@
-$(document).ready(function(){
-    // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
-    $('.modal').modal();
-    $('.button-collapse').sideNav();
-  });
 
-$(".submit-button, .findLocation").click(function() {
-    $('html,body').animate({
-        scrollTop: $("#section2").offset().top},
-        'slow');
+$(document).ready(function () {
+  // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+  $('.modal').modal();
+});
+
+$(".submit-button, .findLocation").click(function () {
+  $('html,body').animate({
+      scrollTop: $("#section2").offset().top
+    },
+    'slow');
 });
 
 var config = {
@@ -40,6 +41,7 @@ var map = $('#map');
 var marker;
 var data;
 var pizza_locations = [];
+var bar_locations = [];
 
 var userLocation = '40.7265884, -73.9716457';
 
@@ -109,8 +111,109 @@ $('#user-location-search').on('click', function (e) {
           if (status !== google.maps.DistanceMatrixStatus.OK) {
             console.log('Error:', status);
           } else {
-            console.log(response);
+
+            // store distances 
+            var distArr = [];
+
+
+            // 1 meter = 0.000621 miles
+            // iterates through data and returns the distances calculated for each location against current location
+            // distances are converted from meters to miles and pushed to distArr
+            for (var i = 0; i < response.rows[0].elements.length; i++) {
+              // creates a new object with distance and store name and pushes to array
+              distArr.push({
+                storeName: pizza_locations[i].shop.name,
+                location: pizza_locations[i].shop.position.lat + "," + pizza_locations[i].shop.position.lng,
+                distance: (response.rows[0].elements[i].distance.value * 0.000621).toFixed(1),
+                rating: pizza_locations[i].shop.rating
+
+              });
+            }
+
+            // sorts distances within distArr
+            distArr.sort(function (a, b) {
+              return a.distance - b.distance;
+            });
+            console.log(distArr);
+
+            $("#location-list-module").empty();
+            // iterate to list module and pushes the 5 closest to the list module
+            for (let j = 0; j < 5; j++) {
+
+
+              var newListItem = $('<li>');
+              newListItem.attr("data-location", distArr[j].location);
+              var newCollapseHeader = $('<div>');
+              newCollapseHeader.attr("class", "collapsible-header ")
+              var locName = $('<span>');
+              locName.attr("class", "location-name");
+              var locDistance = $('<span>');
+              locDistance.attr("class", "list-distance");
+
+              var newCollapseBody = $('<div>');
+              newCollapseBody.attr("class", "collapsible-body");
+              
+              var newLocationAddress = $('<p>');
+
+              locName.html(distArr[j].storeName);
+              locDistance.html(distArr[j].distance);
+              newCollapseHeader.append(locName);
+              newCollapseHeader.append(locDistance);
+
+              newListItem.append(newCollapseHeader);
+              newListItem.append(newCollapseBody);
+
+              $('#location-list-module').append(newListItem);
+            }
+
+            // TESTING DIRECTIONS
+            var directionsDisplay;
+            var directionsService;
+            var stepDisplay;
+
+            $('li').on("click", function () {
+              directionsService = new google.maps.DirectionsService();
+              
+              var selectedDiv = $(this);
+              $('.collapsible-body').empty();
+              selectedLocation = selectedDiv.data('location');
+             
+
+              function displayRoute() {
+
+                var directionsDisplay = new google.maps.DirectionsRenderer(); // also, constructor can get "DirectionsRendererOptions" object
+                directionsDisplay.setMap(map); // map should be already initialized.
+
+                var request = {
+                  origin: userLocation,
+                  destination: selectedLocation,
+                  travelMode: google.maps.TravelMode.WALKING
+                };
+                var directionsService = new google.maps.DirectionsService();
+                directionsService.route(request, function (response, status) {
+                  if (status == google.maps.DirectionsStatus.OK) {
+                    directionsDisplay.setDirections(response);
+                    var stepsJSONLength = response.routes[0].legs[0].steps.length;
+                    var steps = (response.routes[0].legs[0].steps);
+
+                    for(let i = 0; i < stepsJSONLength; i++) {
+                        // console.log(steps[i].instructions);
+
+                        var directionStep = $('<p>');
+                        directionStep.attr('class', 'turnByTurn');
+                        directionStep.html(steps[i].instructions);
+                        var thisCollapse = $(selectedDiv).find(".collapsible-body");
+                        thisCollapse.append(directionStep);
+                    }
+                    
+                  }
+                });
+              }
+
+              displayRoute();
+            });
           }
+
         });
     }
 
@@ -121,23 +224,27 @@ $('#user-location-search').on('click', function (e) {
 
     // sets userLocation (global variable) to what user entered
     userLocation = origin;
-    console.log(userLocation);
+    //console.log(userLocation);
     calcDistance();
 
   })
 });
 
-
 db.ref().on('value', function (snap) {
-  // console.log(snap.val());
-  data = snap.val().pizza_shops;
+  shopData = snap.val().pizza_shops;
+  barData = snap.val().bars;
 
-  for (let place in data) {
-    pizza_locations.push(data[place]); //push object with location data from database to local array
-    addMarker(data[place]);
-    addInfo(data[place])
+  for (let place in shopData) {
+    pizza_locations.push(shopData[place]); //push object with location data from database to local array
+    addShopMarker(shopData[place].shop);
+    addInfo(shopData[place].shop)
   }
-  // console.log(pizza_locations)
+  for (let place in barData) {
+    bar_locations.push(barData[place]); //push object with location data from database to local array
+    addBarMarker(barData[place].bar);
+    addInfo(barData[place].bar)
+  }
+  console.log(pizza_locations)
 })
 
 // display options for map
@@ -155,9 +262,9 @@ function initMap() {
 }
 
 //adds marker at location of each establishment
-function addMarker(place) {
+function addShopMarker(place) {
   marker = new google.maps.Marker({
-    position: place.shop.position,
+    position: place.position,
     icon: {
       url: 'assets/img/pizza_icon.png',
       scaledSize: new google.maps.Size(35, 35)
@@ -167,12 +274,23 @@ function addMarker(place) {
   // console.log(place)
 }
 
-
+function addBarMarker(place) {
+  marker = new google.maps.Marker({
+    position: place.position,
+    icon: {
+      url: 'assets/img/bar_icon.png',
+      scaledSize: new google.maps.Size(35, 35)
+    },
+    map: map
+  });
+  // console.log(place)
+}
 
 //adds info window to marker
 function addInfo(place) {
   var infowindow = new google.maps.InfoWindow({
-    content: '<h4>' + place.shop.name + '</h4>' + '<p>' + place.shop.snippet_text + '</p>'
+    content: '<h5>' + place.name + '</h5>' + '<p>' + place.snippet_text + '</p>',
+    maxWidth: 200
   });
 
   marker.addListener('click', function () {

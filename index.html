@@ -7,49 +7,46 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Font awesome css -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="assets/css/styles.css">
     <script src="https://www.gstatic.com/firebasejs/3.6.5/firebase.js"></script>
     <title>Bitsie - Enjoy New York's Nightlife At A Bitsie Sized Cost!</title>
   </head>
   <body class="red darken-2">
-
-    <!-- SECTION 1 -->
-    <section id="section1" class="no-padding">
+  <!-- SECTION 1 -->
+  <section id="section1" class="no-padding">
     <!-- nav bar with info button -->
-      
-      <nav class="transparent z-depth-0">
-      <!--
-      <a class="waves-effect waves-light btn modal-trigger info_btn_color" href="#modal1">Info</a>
-     
-    
-      
-      <div id="modal1" class="modal">
-        <div class="modal-content">
-          <h4>Cheap Eats how to use</h4>
-          <p>info </p>
-        </div>
-        <div class="modal-footer">
-          <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">got it!</a>
-        </div>
+    <nav class="transparent z-depth-0">
+      <div class="nav-wrapper transparent valign-wrapper">
+        <a class="waves-effect waves-light btn modal-trigger info_btn_color" href="#modal1">Info</a>
       </div>
-      -->
     </nav>
-  
-       
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal">
+      <div class="modal-content">
+        <h4>Cheap Eats how to use</h4>
+        <p>info </p>
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">got it!</a>
+      </div>
+    </div>
+
     <!-- container holding main content -->
-      <div class="container center">
+    <div class="container center">
       <br>
       <br>
-        <div class="pushdown-10p"></div>
-        <div class="row">
-          <div class="col s12">
-            <!-- insert logo here -->
-            <img class="image-title" src = "assets/img/logo.png">
-          </div>
+      <div class="pushdown-10p"></div>
+      <div class="row">
+        <div class="col s12">
+          <!-- insert logo here -->
+          <img class="image-title" src="assets/img/logo.png">
         </div>
+
 
         <div class="container">
-          <div class="col s6 center black-text">
+          <div class="col s12 center black-text">
             <h5 class="black-text no-margin">Spend Wise While Having A Great Night!</h5>
           </div>
         </div>
@@ -63,85 +60,46 @@
                 <label for="userLocationInput">Enter Location</label>
                 <a class="waves-effect waves-light btn submit-button" id="user-location-search">Submit</a>
               </div>
+
             </div>
           </div>
         </div>
       </div>
-      <img class="overlay-ground" src="assets/img/overlay.png"/>
-    </section> <!-- END SECTION 1 -->
-
-    <!-- SECTION 2 -->
-    <section id="section2" class="no-padding">
-
-      <div id="container mainContent">
-        <div class="row">
-
+    </div>
+    <img class="overlay-ground" src="assets/img/overlay.png" />
+  </section>
+  <!-- END SECTION 1 -->
+  
+  <!-- SECTION 2 -->
+  <section id="section2" class="no-padding">
+    <div id="container">
+      <div class="row">
+        <div class="col s12">
           <div class="col s12">
-            <div class="col s12">
             <img class="miniLogo" src = "assets/img/mini-logo.png">
-            </div>
-            <!-- GOOGLE MAP -->
-            <div class="col s12 m7 l8">
-              <div id="map">
-              </div>
-            </div> <!-- MAP -->
-
-            <!-- LIST MODULE -->
-            <div class="col s12 m5 l4">
-              <ul class="collapsible" data-collapsible="accordion" id="location-list-module">
-                <li>
-                  <div class="collapsible-header ">
-                    <span class="location-name">1. First Location</span>
-                    <span class="list-distance">0.2 miles</span>
-                    <span class="location-rating"><i class="material-icons rating-stars">star</i>3</span>
-                  </div>
-                  <div class="collapsible-body">
-                    <p class="location-address address-collapse">Address: 14th Street New York City, NY 00150</p>
-                  </div>
-                </li>
-                <li>
-                  <div class="collapsible-header">
-                    <span class="location-name">2. Second Location</span>
-                    <span class="list-distance">0.2 miles</span>
-                    <span class="location-rating"><i class="material-icons rating-stars">star</i>3</span>
-                  </div>
-                  <div class="collapsible-body">
-                    <p class="location-address address-collapse">Address: 14th Street New York City, NY 00150</p>
-                  </div>
-                </li>
-                <li>
-                  <div class="collapsible-header">
-                    <span class="location-name">3. Third Location</span>
-                    <span class="list-distance">0.2 miles</span>
-                    <span class="location-rating"><i class="material-icons rating-stars">star</i>3</span>
-                  </div>
-                  <div class="collapsible-body">
-                    <p class="location-address address-collapse">Address: 14th Street New York City, NY 00150</p>
-                  </div>
-                </li>
-                <li>
-                  <div class="collapsible-header">
-                    <span class="location-name">4. Fourth Location</span>
-                    <span class="list-distance">0.2 miles</span>
-                    <span class="location-rating"><i class="material-icons rating-stars">star</i>3</span>
-                  </div>
-                  <div class="collapsible-body">
-                    <p class="location-address address-collapse">Address: 14th Street New York City, NY 00150</p>
-                  </div>
-                </li>
-                <li>
-                  <div class="collapsible-header">
-                    <span class="location-name">5. Fifth Location</span>
-                    <span class="list-distance">0.2 miles</span>
-                    <span class="location-rating"><i class="material-icons rating-stars">star</i>3</span>
-                  </div>
-                  <div class="collapsible-body address-collapse">
-                    <p class="location-address">Address: 14th Street New York City, NY 00150</p>
-                  </div>
-                </li>
-              </ul>
-            </div> <!--END LIST MODULE-->
           </div>
+          <!-- GOOGLE MAP -->
+          <div class="col s12 m7 l8">
+            <div id="map">
+            </div>
+          </div>
+          <!-- MAP -->
+          <!-- LIST MODULE -->
+          <div class="col s12 m5 l4">
+            <ul class="collapsible" data-collapsible="accordion" id="location-list-module">
+              <!--<li>
+                <div class="collapsible-header">
+                  <span class="location-name">5. Fifth Location</span>
+                  <span class="list-distance">0.2 miles</span>
+                  <span class="location-rating"><i class="material-icons rating-stars">star</i>3</span>
+                </div>
+                <div class="collapsible-body address-collapse">
+                  <p class="location-address">Address: 14th Street New York City, NY 00150</p>
+                </div>
+              </li>-->
+            </ul>
+          </div>
+
           <div class="col s12">
             <div class="col s6">
               <h5>Want to find cheap eats somewhere else?</h5>
@@ -161,32 +119,34 @@
                 <label for="userLocationInput">Enter Location</label>
                 <a class="waves-effect waves-light btn submit-button" id="user-location-search">Submit</a>
               </div>
-          </div>
-          -->
+            </div>
+            -->
         </div>
       </div>
-    </section> <!-- END SECTION 2 -->
+    </section> 
+    <!-- END SECTION 2 -->
   
-    <!-- FOOTER -->
-    <!--
-    <footer class="page-footer">
-      <div class="footer-copyright">
-        <div class="container">
-        © 2017 Copyright Text
-        
-        <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
-       
+
+  <!-- FOOTER -->
+  <footer class="page-footer red darken-1">
+    <div class="footer-copyright red darken-2">
+      <div class="container">
+        <div class="row">
+          <div class="col m6 offset-m5">
+            Coded With <i class="fa fa-heart"></i> & <strong>PATIENCE</strong>
+          </div>
         </div>
       </div>
-    </footer>
-    ->
-     <!-- END FOOTER -->
-
-    <!-- SCRIPTS -->
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    </div>
+  </footer>
+  <!-- END FOOTER -->
+  <!-- SCRIPTS -->
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"></script>
     <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAhVCu_gr8RKRpyAtvWqbtRb-DFyCvgqUM&callback=initMap"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
     <script type="text/javascript" src="assets/js/main.js"></script>
-  </body>
+</body>
+
 </html>
