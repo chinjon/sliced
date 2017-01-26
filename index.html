@@ -5,7 +5,8 @@
     <meta charset="utf-8" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/styles.css">
     <script src="https://www.gstatic.com/firebasejs/3.6.5/firebase.js"></script>
     <title>Bitsie - Enjoy New York's Nightlife At A Bitsie Sized Cost!</title>
@@ -15,13 +16,13 @@
     <!-- SECTION 1 -->
     <section id="section1" class="no-padding">
     <!-- nav bar with info button -->
+      
       <nav class="transparent z-depth-0">
-        <div class="nav-wrapper transparent valign-wrapper">
+       
              <a class="waves-effect waves-light btn modal-trigger info_btn_color" href="#modal1">Info</a>
-        </div>
-      </nav>
-
-     <!-- Modal Structure -->
+     
+    
+      
       <div id="modal1" class="modal">
         <div class="modal-content">
           <h4>Cheap Eats how to use</h4>
@@ -31,7 +32,9 @@
           <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">got it!</a>
         </div>
       </div>
-
+    </nav>
+  
+       
     <!-- container holding main content -->
       <div class="container center">
       <br>
@@ -43,13 +46,13 @@
             <img class="image-title" src = "assets/img/logo.png">
           </div>
         </div>
-        <br>
+
         <div class="container">
           <div class="col s6 center black-text">
-            <h5 class="black-text no-margin roboto3000">Spend Wise While Having A Great Night!</h5>
+            <h5 class="black-text no-margin">Spend Wise While Having A Great Night!</h5>
           </div>
         </div>
-        <br>
+
         <div class="container">
           <div class="row">
             <div class="col s12">
@@ -68,7 +71,8 @@
 
     <!-- SECTION 2 -->
     <section id="section2" class="no-padding">
-      <div id="container">
+
+      <div id="container mainContent">
         <div class="row">
           <div class="col s12">
           
@@ -134,21 +138,46 @@
               </ul>
             </div> <!--END LIST MODULE-->
           </div>
+          <div class="col s12">
+            <div class="col s6 inlineInput">
+              <img class="miniLogo" src = "assets/img/mini-logo.png">
+              <h5>Want to find cheap eats somewhere else?</h5>
+            </div>
+            <div class="col s3">
+               <div class="input-field section2Field">
+                <input id="userLocationInput" type="text" class="validate">
+                <label for="userLocationInput">Enter Location</label>
+              </div>
+            </div>
+            <div class="col s2">
+              <a class="waves-effect waves-light btn submit-button" id="user-location-search">Submit</a>
+            </div>
+            <!--
+              <div class="input-field">
+                <input id="userLocationInput" type="text" class="validate">
+                <label for="userLocationInput">Enter Location</label>
+                <a class="waves-effect waves-light btn submit-button" id="user-location-search">Submit</a>
+              </div>
+          </div>
+          -->
         </div>
       </div>
     </section> <!-- END SECTION 2 -->
-
+  
     <!-- FOOTER -->
+    <!--
     <footer class="page-footer">
       <div class="footer-copyright">
         <div class="container">
         © 2017 Copyright Text
-        <!--
+        
         <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
-        -->
+       
         </div>
       </div>
-    </footer> <!-- END FOOTER -->
+    </footer>
+    ->
+     <!-- END FOOTER -->
 
     <!-- SCRIPTS -->
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>

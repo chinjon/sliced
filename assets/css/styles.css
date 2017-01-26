@@ -11,17 +11,20 @@ main {
   flex: 1 0 auto;
 }
 
+
+
+
 #map {
-  height: 80vh;
+  height: 60vh;
   width: 100%;
   /*margin-left: 210px;*/
-  margin-top: 50px;
+  margin-top: 70px;
   /*margin-bottom: 50px;*/
 }
 
 .collapsible {
-  height: 80vh;
-  margin-top: 50px;
+  height: 60vh;
+  margin-top: 70px;
   background-color:white;
 }
 
@@ -67,11 +70,28 @@ nav {
   height: 100vh;
 }
 
+h5, h6{
+  font-family: 'Pacifico', cursive;
+
+}
+
+.section2Field{
+  margin:0px;
+}
+
+.miniLogo{
+  width:20%;
+}
+
+.inlineInput{
+  display:inline;
+}
+
 
 /*LOCATION LIST START*/
 
 #location-list-module {
-  margin-top: 50px;
+  margin-top: 70px;
 }
 
 .location-rating,
