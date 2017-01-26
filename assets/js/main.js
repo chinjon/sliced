@@ -176,8 +176,9 @@ $('#user-location-search').on('click', function (e) {
 
             $('li').on("click", function () {
               directionsService = new google.maps.DirectionsService();
+              var selectedDiv = $(this);
 
-              selectedLocation = $(this).data('location');
+              selectedLocation = selectedDiv.data('location');
              
 
               function displayRoute() {
@@ -196,22 +197,25 @@ $('#user-location-search').on('click', function (e) {
                 directionsService.route(request, function (response, status) {
                   if (status == google.maps.DirectionsStatus.OK) {
                     directionsDisplay.setDirections(response);
-                    console.log(JSON.stringify(response));
+                    var stepsJSONLength = response.routes[0].legs[0].steps.length;
+                    var steps = (response.routes[0].legs[0].steps);
+
+                    for(let i = 0; i < stepsJSONLength; i++) {
+                        console.log(steps[i].instructions);
+
+                        var directionStep = $('<p>');
+                        directionStep.html(steps[i].instructions);
+
+                        selectedDiv.append(directionStep);
+                    }
+                    
                   }
                 });
               }
 
               displayRoute();
             });
-
-
-
-
           }
-
-
-
-
 
         });
     }
