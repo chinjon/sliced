@@ -11,20 +11,17 @@ main {
   flex: 1 0 auto;
 }
 
-
-
-
 #map {
   height: 60vh;
   width: 100%;
   /*margin-left: 210px;*/
-  margin-top: 70px;
+  margin-top: 0px;
   /*margin-bottom: 50px;*/
 }
 
 .collapsible {
   height: 60vh;
-  margin-top: 70px;
+  margin-top: 0px;
   background-color:white;
 }
 
@@ -46,7 +43,7 @@ nav {
   margin: 0;
   max-width: none;
   background-color: #f44336;
-  height: 90vh;
+  height: 100vh;
   position: relative;
 }
 
@@ -81,17 +78,20 @@ h5, h6{
 
 .miniLogo{
   width:20%;
+  margin-top:10px;
 }
 
-.inlineInput{
-  display:inline;
+.sameLine{
+  display:inline-block;
 }
+
+
 
 
 /*LOCATION LIST START*/
 
 #location-list-module {
-  margin-top: 70px;
+  margin-top: 0px;
 }
 
 .location-rating,
