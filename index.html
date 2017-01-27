@@ -5,6 +5,8 @@
     <meta charset="utf-8" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Font awesome css -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="assets/css/styles.css">
@@ -20,44 +22,51 @@
         <a class="waves-effect btn-floating waves-light btn modal-trigger info_btn_color infobtn" id="infobtn" href="#modal1"><i class="material-icons">info</i></a>
       </div>
     </nav>
-    <!-- Modal Structure -->
-    <div id="modal1" class="modal">
-      <div class="modal-content">
-        <h4>Cheap Eats how to use</h4>
-        <p>info </p>
-      </div>
-      <div class="modal-footer">
-        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">got it!</a>
-      </div>
-    </div>
-    <!-- container holding main content -->
-    <div class="container center">
-      <br>
-      <br>
-      <div class="pushdown-10p"></div>
-      <div class="row">
-        <div class="col s12">
-          <!-- insert logo here -->
-          <img class="image-title" src="assets/img/logo.png">
+
+        </div>
+      </nav>
+      <!-- Modal Structure -->
+      <div id="modal1" class="modal">
+        <div class="modal-content">
+          <h4>Cheap Eats how to use</h4>
+          <p>info </p>
+        </div>
+        <div class="modal-footer">
+          <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">got it!</a>
         </div>
       </div>
-      <br>
-      <div class="container">
-        <div class="col s6 center black-text">
-          <h5 class="black-text no-margin roboto3000">Spend Wise While Having A Great Night!</h5>
-        </div>
-      </div>
-      <br>
-      <div class="container">
+
+      <!-- container holding main content -->
+      <div class="container center">
+        <br>
+        <br>
+        <div class="pushdown-10p"></div>
         <div class="row">
           <div class="col s12">
-            <!-- insert form for address or find my location button -->
-            <div class="input-field">
-              <input id="userLocationInput" type="text" class="validate">
-              <label for="userLocationInput">Enter Location</label>
-              <a class="waves-effect waves-light btn submit-button" id="user-location-search">Submit</a>
+            <!-- insert logo here -->
+            <img class="image-title" src="assets/img/logo.png">
+          </div>
+
+
+          <div class="container">
+            <div class="col s12 center black-text">
+              <h5 class="black-text no-margin">Spend Wise While Having A Great Night!</h5>
             </div>
           </div>
+
+          <div class="container">
+            <div class="row">
+              <div class="col s12">
+                <!-- insert form for address or find my location button -->
+                <div class="input-field">
+                  <input id="userLocationInput" type="text" class="validate">
+                  <label for="userLocationInput">Enter Location</label>
+                  <a class="waves-effect waves-light btn submit-button" id="user-location-search">Submit</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
         <div class="row">
           <div class="col s12">
@@ -66,15 +75,33 @@
         </div>
         <!-- <img class="overlay-ground" src="assets/img/overlay.png" /> -->
       </div>
-    </div>
-    <!-- <img class="overlay-ground" src="assets/img/overlay.png" /> -->
-  </section>
+      <img class="overlay-ground" src="assets/img/overlay.png" />
+    </section>
   <!-- END SECTION 1 -->
+
   <!-- SECTION 2 -->
-  <section id="section2" class="no-padding">
-    <div id="container">
-      <div class="row">
-        <div class="col s12">
+    <section id="section2" class="no-padding">
+      <div id="container">
+        <!-- Mini Logo Row -->
+        <div class="row">
+          <div class="col s2">
+            <img class="miniLogo" src = "assets/img/mini-logo.png">
+          </div>
+          <div class="container valign-wrapper">
+            <div class="col s8">
+              <!-- insert form for address or find my location button -->
+              <div class="input-field">
+                <input id="userLocationInput" type="text" class="validate">
+                <label for="userLocationInput">Want more bites?</label>
+              </div>
+            </div>
+            <div class="col s2">
+                <a class="waves-effect waves-light btn submit-button" id="user-location-search">Submit</a>
+            </div>
+          </div>
+        </div>
+         <!-- Main Content Row -->
+        <div class="row mainContent">
           <!-- GOOGLE MAP -->
           <div class="col s12 m7 l8">
             <div id="map">
@@ -84,8 +111,6 @@
           <!-- LIST MODULE -->
           <div class="col s12 m5 l4">
             <ul class="collapsible" data-collapsible="accordion" id="location-list-module">
-
-
               <!--<li>
                 <div class="collapsible-header">
                   <span class="location-name">5. Fifth Location</span>
@@ -96,30 +121,30 @@
                   <p class="location-address">Address: 14th Street New York City, NY 00150</p>
                 </div>
               </li>-->
-
             </ul>
           </div>
-          <!--END LIST MODULE-->
         </div>
+
       </div>
-    </div>
-  </section>
-  <!-- END SECTION 2 -->
-  <!-- FOOTER -->
-  <footer class="page-footer red darken-1">
-    <div class="footer-copyright red darken-2">
-      <div class="container">
-        <div class="row">
-          <div class="col m6 offset-m5">
-            Coded With <i class="fa fa-heart"></i> & <strong>PATIENCE</strong>
+    </section>
+    <!-- END SECTION 2 -->
+
+
+    <!-- FOOTER -->
+    <footer class="page-footer red darken-1">
+      <div class="footer-copyright red darken-2">
+        <div class="container">
+          <div class="row">
+            <div class="col m6 offset-m5">
+              Coded With <i class="fa fa-heart"></i> & <strong>PATIENCE</strong>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </footer>
-  <!-- END FOOTER -->
+    </footer>
+    <!-- END FOOTER -->
   <!-- SCRIPTS -->
-  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
     crossorigin="anonymous"></script>
     <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAhVCu_gr8RKRpyAtvWqbtRb-DFyCvgqUM&callback=initMap"></script>

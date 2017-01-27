@@ -1,8 +1,8 @@
+
 $(document).ready(function () {
   // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
   $('.modal').modal();
 });
-
 
 $(".submit-button, .findLocation").click(function () {
   $('html,body').animate({

@@ -12,17 +12,17 @@ main {
 }
 
 #map {
-  height: 80vh;
+  height: 60vh;
   width: 100%;
   /*margin-left: 210px;*/
-  margin-top: 50px;
+  margin-top: 0px;
   /*margin-bottom: 50px;*/
   padding: 20px;
 }
 
 .collapsible {
-  height: 80vh;
-  margin-top: 50px;
+  height: 60vh;
+  margin-top: 0px;
   background-color:white;
 }
 
@@ -79,11 +79,32 @@ nav {
   height: 100vh;
 }
 
+h5, h6{
+  font-family: 'Pacifico', cursive;
+
+}
+
+.section2Field{
+  margin:0px;
+}
+
+.miniLogo{
+  width:100%;
+  margin-top:20px;
+}
+
+.sameLine{
+  display:inline-block;
+}
+
+.mainContent{
+  margin-bottom:0px;
+}
 
 /*LOCATION LIST START*/
 
 #location-list-module {
-  margin-top: 50px;
+  margin-top: 0px;
   overflow: scroll !important;
 }
 
