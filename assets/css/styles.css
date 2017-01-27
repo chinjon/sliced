@@ -165,3 +165,14 @@ i.rating-stars {
   margin-left: 25px;
 
 }
+
+
+/*MODAL STYLES*/
+#modalHeader {
+  margin-left: 70px;
+}
+
+#modalParagraph {
+  width: 70%;
+  margin: auto;
+}
