@@ -80,14 +80,10 @@ $('#user-location-search').on('click', function (e) {
 
   console.log(stores)
 
-
-
   $.ajax({
     url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + userLocation + '&key=' + key,
     method: 'GET'
   }).done(function (data) {
-
-
 
     function calcDistance(origin, destination) {
       var distanceService = new google.maps.DistanceMatrixService();
@@ -216,9 +212,16 @@ $('#user-location-search').on('click', function (e) {
 
     var inputLong = data.results[0].geometry.location.lng;
     var inputLat = data.results[0].geometry.location.lat;
+
+    var userLatLngObj = {
+      position: {
+        lat: inputLat,
+        lng: inputLong
+      }
+    }
     moveToLocation(inputLat, inputLong);
     var origin = inputLat + "," + inputLong;
-
+    addUserMarker(userLatLngObj)
     // sets userLocation (global variable) to what user entered
     userLocation = origin;
     //console.log(userLocation);
@@ -226,6 +229,11 @@ $('#user-location-search').on('click', function (e) {
 
   })
 });
+
+$('#location-list-module').on('click', function(e){
+  e.preventDefault()
+  marker.setMap(null)
+})
 
 db.ref().on('value', function (snap) {
   shopData = snap.val().pizza_shops;
@@ -277,6 +285,18 @@ function addBarMarker(place) {
     icon: {
       url: 'assets/img/bar_icon.png',
       scaledSize: new google.maps.Size(35, 35)
+    },
+    map: map
+  });
+  // console.log(place)
+}
+
+function addUserMarker(place) {
+  marker = new google.maps.Marker({
+    position: place.position,
+    icon: {
+      url: 'assets/img/user_icon.png',
+      scaledSize: new google.maps.Size(40, 40)
     },
     map: map
   });
