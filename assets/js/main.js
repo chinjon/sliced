@@ -4,7 +4,7 @@ $(document).ready(function () {
   $('.modal').modal();
 });
 
-$(document).on("click", ".submit-button, .findLocation", function(){
+$(document).on("click", ".submit-button", function(){
   if($('#userLocationInput').val() === ''){
         return false;
       } else {
