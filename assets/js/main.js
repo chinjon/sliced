@@ -1,8 +1,8 @@
+
 $(document).ready(function () {
   // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
   $('.modal').modal();
 });
-
 
 $(".submit-button, .findLocation").click(function () {
   $('html,body').animate({
@@ -55,13 +55,10 @@ db.ref().on('value', function (snap) {
 
 })
 
-
-
 // obtain new long and lat and shift map view
 
 function moveToLocation(lat, lng) {
   var center = new google.maps.LatLng(lat, lng);
-
   map.panTo(center);
   map.setZoom(15);
 }
@@ -89,16 +86,11 @@ $('#user-location-search').on('click', function (e) {
 
 
 
-
-
   $.ajax({
     url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + userLocation + '&key=' + key,
     method: 'GET'
   }).done(function (data) {
     
-
-    
-
     function calcDistance(origin, destination) {
       var distanceService = new google.maps.DistanceMatrixService();
       distanceService.getDistanceMatrix({
@@ -109,7 +101,7 @@ $('#user-location-search').on('click', function (e) {
           destinations: destination,
           travelMode: google.maps.TravelMode.WALKING,
           unitSystem: google.maps.UnitSystem.IMPERIAL,
-          // need to rework or change parameters to reflect walking times and routes  
+          // need to rework or change parameters to reflect walking times and routes
           durationInTraffic: true,
           avoidHighways: true,
           avoidTolls: true
@@ -119,7 +111,7 @@ $('#user-location-search').on('click', function (e) {
             console.log('Error:', status);
           } else {
 
-            // store distances 
+            // store distances
             var distArr = [];
             var barDistArr = [];
             // 1 meter = 0.000621 miles
@@ -183,7 +175,7 @@ $('#user-location-search').on('click', function (e) {
 
               var newCollapseBody = $('<div>');
               newCollapseBody.attr("class", "collapsible-body");
-              
+
               var newLocationAddress = $('<p>');
 
               locName.html(arr[j].storeName);
@@ -234,11 +226,11 @@ $('#user-location-search').on('click', function (e) {
 
             $('li').on("click", function () {
               directionsService = new google.maps.DirectionsService();
-              
+
               var selectedDiv = $(this);
               $('.collapsible-body').empty();
               selectedLocation = selectedDiv.data('location');
-             
+
 
               function displayRoute() {
 
@@ -266,7 +258,7 @@ $('#user-location-search').on('click', function (e) {
                         var thisCollapse = $(selectedDiv).find(".collapsible-body");
                         thisCollapse.append(directionStep);
                     }
-                    
+
                   }
                 });
               }
@@ -280,9 +272,16 @@ $('#user-location-search').on('click', function (e) {
 
     var inputLong = data.results[0].geometry.location.lng;
     var inputLat = data.results[0].geometry.location.lat;
+
+    var userLatLngObj = {
+      position: {
+        lat: inputLat,
+        lng: inputLong
+      }
+    }
     moveToLocation(inputLat, inputLong);
     var origin = inputLat + "," + inputLong;
-
+    addUserMarker(userLatLngObj)
     // sets userLocation (global variable) to what user entered
     userLocation = origin;
     //console.log(userLocation);
@@ -291,6 +290,11 @@ $('#user-location-search').on('click', function (e) {
 
   })
 });
+
+$('#location-list-module').on('click', function(e){
+  e.preventDefault()
+  marker.setMap(null)
+})
 
 db.ref().on('value', function (snap) {
   shopData = snap.val().pizza_shops;
@@ -342,6 +346,18 @@ function addBarMarker(place) {
     icon: {
       url: 'assets/img/bar_icon.png',
       scaledSize: new google.maps.Size(35, 35)
+    },
+    map: map
+  });
+  // console.log(place)
+}
+
+function addUserMarker(place) {
+  marker = new google.maps.Marker({
+    position: place.position,
+    icon: {
+      url: 'assets/img/user_icon.png',
+      scaledSize: new google.maps.Size(40, 40)
     },
     map: map
   });
