@@ -2,14 +2,12 @@
 $(document).ready(function () {
   // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
   $('.modal').modal();
-  $('#section2').hide();
 });
 
-$(document).on("click", ".submit-button, .findLocation", function(){
+$(document).on("click", ".submit-button", function(){
   if($('#userLocationInput').val() === ''){
         return false;
       } else {
-        $('#section2').show();
   $('html,body').animate({
       scrollTop: $("#section2").offset().top
     },
