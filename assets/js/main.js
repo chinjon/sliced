@@ -162,7 +162,7 @@ $('#user-location-search').on('click', function (e) {
             $("#location-list-module").empty();
             // iterate to list module and pushes the 5 closest to the list module
 
-            function displayResults(arr){
+            function displayResults(arr, type){
               for (let j = 0; j < 5; j++) {
               var newListItem = $('<li>');
               newListItem.attr("data-location", arr[j].location);
@@ -178,8 +178,25 @@ $('#user-location-search').on('click', function (e) {
 
               var newLocationAddress = $('<p>');
 
-              locName.html(arr[j].storeName);
-              locDistance.html(arr[j].distance);
+              var iconOne = $('<i>');
+              var iconTwo = $('<i>')
+              var pizzaIcon = iconOne.attr("class", "material-icons");
+              pizzaIcon.append("local_pizza");
+              var beerIcon = iconTwo.attr("class", "fa fa-beer");
+
+              // <i class="fa fa-beer" aria-hidden="true"></i> font awesome beer
+              // <i class="material-icons">local_pizza</i> google pizza
+
+              // locName.html(arr[j].storeName);
+              if(type === "pizza") {
+                locName.html(arr[j].storeName);
+                locName.append(pizzaIcon)
+              } else if (type === "beer") {
+                locName.html(arr[j].storeName);
+                locName.append(beerIcon)
+              }
+
+              locDistance.html("Distance: " + arr[j].distance + " mi.");
               newCollapseHeader.append(locName);
               newCollapseHeader.append(locDistance);
 
@@ -190,34 +207,9 @@ $('#user-location-search').on('click', function (e) {
             }
             }
 
-            displayResults(distArr);
-            displayResults(barDistArr);
+            displayResults(distArr, 'pizza');
+            displayResults(barDistArr, 'beer');
 
-            // for (let j = 0; j < 5; j++) {
-            //   var newListItem = $('<li>');
-            //   newListItem.attr("data-location", distArr[j].location);
-            //   var newCollapseHeader = $('<div>');
-            //   newCollapseHeader.attr("class", "collapsible-header ")
-            //   var locName = $('<span>');
-            //   locName.attr("class", "location-name");
-            //   var locDistance = $('<span>');
-            //   locDistance.attr("class", "list-distance");
-
-            //   var newCollapseBody = $('<div>');
-            //   newCollapseBody.attr("class", "collapsible-body");
-              
-            //   var newLocationAddress = $('<p>');
-
-            //   locName.html(distArr[j].storeName);
-            //   locDistance.html(distArr[j].distance);
-            //   newCollapseHeader.append(locName);
-            //   newCollapseHeader.append(locDistance);
-
-            //   newListItem.append(newCollapseHeader);
-            //   newListItem.append(newCollapseBody);
-
-            //   $('#location-list-module').append(newListItem);
-            // }
 
             // TESTING DIRECTIONS
             var directionsDisplay;
