@@ -65,6 +65,8 @@ nav {
   width: 100%;
   position: absolute;
   bottom: 0;
+  right: 0;
+  z-index: 99;
 }
 
 #section1 {
@@ -145,5 +147,5 @@ i.rating-stars {
 .collapsible-body p {
   padding: 15px;
   margin-left: 25px;
-  
+
 }
