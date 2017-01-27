@@ -63,7 +63,7 @@ nav {
 }
 
 .image-title {
-  width: 60%;
+  width: 80%;
 }
 
 .overlay-ground {
@@ -78,6 +78,9 @@ nav {
   z-index:99;
 }
 
+.validate{
+  text-transform: capitalize;
+}
 #section1 {
   width: 100%;
   padding: 0 7%;
