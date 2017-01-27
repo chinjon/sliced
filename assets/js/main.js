@@ -55,13 +55,10 @@ db.ref().on('value', function (snap) {
 
 })
 
-
-
 // obtain new long and lat and shift map view
 
 function moveToLocation(lat, lng) {
   var center = new google.maps.LatLng(lat, lng);
-
   map.panTo(center);
   map.setZoom(15);
 }
@@ -83,14 +80,10 @@ $('#user-location-search').on('click', function (e) {
 
   console.log(stores)
 
-
-
   $.ajax({
     url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + userLocation + '&key=' + key,
     method: 'GET'
   }).done(function (data) {
-
-
 
     function calcDistance(origin, destination) {
       var distanceService = new google.maps.DistanceMatrixService();
@@ -102,7 +95,7 @@ $('#user-location-search').on('click', function (e) {
           destinations: stores,
           travelMode: google.maps.TravelMode.WALKING,
           unitSystem: google.maps.UnitSystem.IMPERIAL,
-          // need to rework or change parameters to reflect walking times and routes  
+          // need to rework or change parameters to reflect walking times and routes
           durationInTraffic: true,
           avoidHighways: false,
           avoidTolls: false
@@ -112,14 +105,14 @@ $('#user-location-search').on('click', function (e) {
             console.log('Error:', status);
           } else {
 
-            // store distances 
+            // store distances
             var distArr = [];
 
 
             // 1 meter = 0.000621 miles
             // iterates through data and returns the distances calculated for each location against current location
             // distances are converted from meters to miles and pushed to distArr
-            for (var i = 0; i < response.rows[0].elements.length; i++) {
+            for (let i = 0; i < response.rows[0].elements.length; i++) {
               // creates a new object with distance and store name and pushes to array
               distArr.push({
                 storeName: pizza_locations[i].shop.name,
@@ -152,7 +145,7 @@ $('#user-location-search').on('click', function (e) {
 
               var newCollapseBody = $('<div>');
               newCollapseBody.attr("class", "collapsible-body");
-              
+
               var newLocationAddress = $('<p>');
 
               locName.html(distArr[j].storeName);
@@ -173,11 +166,11 @@ $('#user-location-search').on('click', function (e) {
 
             $('li').on("click", function () {
               directionsService = new google.maps.DirectionsService();
-              
+
               var selectedDiv = $(this);
               $('.collapsible-body').empty();
               selectedLocation = selectedDiv.data('location');
-             
+
 
               function displayRoute() {
 
@@ -205,7 +198,7 @@ $('#user-location-search').on('click', function (e) {
                         var thisCollapse = $(selectedDiv).find(".collapsible-body");
                         thisCollapse.append(directionStep);
                     }
-                    
+
                   }
                 });
               }
@@ -219,9 +212,16 @@ $('#user-location-search').on('click', function (e) {
 
     var inputLong = data.results[0].geometry.location.lng;
     var inputLat = data.results[0].geometry.location.lat;
+
+    var userLatLngObj = {
+      position: {
+        lat: inputLat,
+        lng: inputLong
+      }
+    }
     moveToLocation(inputLat, inputLong);
     var origin = inputLat + "," + inputLong;
-
+    addUserMarker(userLatLngObj)
     // sets userLocation (global variable) to what user entered
     userLocation = origin;
     //console.log(userLocation);
@@ -229,6 +229,11 @@ $('#user-location-search').on('click', function (e) {
 
   })
 });
+
+$('#location-list-module').on('click', function(e){
+  e.preventDefault()
+  marker.setMap(null)
+})
 
 db.ref().on('value', function (snap) {
   shopData = snap.val().pizza_shops;
@@ -286,6 +291,18 @@ function addBarMarker(place) {
   // console.log(place)
 }
 
+function addUserMarker(place) {
+  marker = new google.maps.Marker({
+    position: place.position,
+    icon: {
+      url: 'assets/img/user_icon.png',
+      scaledSize: new google.maps.Size(40, 40)
+    },
+    map: map
+  });
+  // console.log(place)
+}
+
 //adds info window to marker
 function addInfo(place) {
   var infowindow = new google.maps.InfoWindow({
@@ -297,6 +314,3 @@ function addInfo(place) {
     infowindow.open(map, this);
   });
 }
-
- 
-        
