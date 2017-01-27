@@ -35,7 +35,16 @@ nav {
 .infobtn {
   background-color: transparent;
   color: black;
+  margin: 70px 0 0 40px;
+  width: 50px;
+  height: 50px;
 }
+
+.infobtn i {
+  line-height: 50px !important;
+}
+
+
 
 #section2 {
   width: 100%;
@@ -73,6 +82,7 @@ nav {
 
 #location-list-module {
   margin-top: 50px;
+  overflow: scroll !important;
 }
 
 .location-rating,
@@ -135,4 +145,5 @@ i.rating-stars {
 .collapsible-body p {
   padding: 15px;
   margin-left: 25px;
+  
 }
