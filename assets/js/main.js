@@ -230,6 +230,7 @@ $('#user-location-search').on('click', function (e) {
   })
 });
 
+// this clears the user marker once they click to start directions
 $('#location-list-module').on('click', function(e){
   e.preventDefault()
   marker.setMap(null)
@@ -245,7 +246,7 @@ db.ref().on('value', function (snap) {
     addInfo(shopData[place].shop)
   }
   for (let place in barData) {
-    bar_locations.push(barData[place]); //push object with location data from database to local array
+    bar_locations.push(barData[place]); // push object with location data from database to local array
     addBarMarker(barData[place].bar);
     addInfo(barData[place].bar)
   }
@@ -261,12 +262,12 @@ var mapOptions = {
   zoom: 13
 }
 
-//initializes and adds map to page
+// initializes and adds map to page
 function initMap() {
   map = new google.maps.Map(map[0], mapOptions);
 }
 
-//adds marker at location of each establishment
+// adds marker at location of each establishment
 function addShopMarker(place) {
   marker = new google.maps.Marker({
     position: place.position,
@@ -303,7 +304,7 @@ function addUserMarker(place) {
   // console.log(place)
 }
 
-//adds info window to marker
+// adds info window to marker
 function addInfo(place) {
   var infowindow = new google.maps.InfoWindow({
     content: '<h5>' + place.name + '</h5>' + '<p>' + place.snippet_text + '</p>',
