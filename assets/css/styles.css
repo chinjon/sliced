@@ -44,7 +44,7 @@ nav {
   margin: 0;
   max-width: none;
   background-color: #f44336;
-  height: 100vh;
+  height: 90vh;
   position: relative;
 }
 
@@ -78,7 +78,7 @@ h5, h6{
 }
 
 .miniLogo{
-  width:20%;
+  width:100%;
   margin-top:20px;
 }
 
@@ -86,8 +86,9 @@ h5, h6{
   display:inline-block;
 }
 
-
-
+.mainContent{
+  margin-bottom:0px;
+}
 
 /*LOCATION LIST START*/
 
