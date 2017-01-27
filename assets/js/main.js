@@ -68,6 +68,7 @@ function moveToLocation(lat, lng) {
 
 // creates global to store locations in array to push to distance matrix
 var stores;
+var bars;
 
 $('#user-location-search').on('click', function (e) {
   e.preventDefault();
@@ -76,12 +77,17 @@ $('#user-location-search').on('click', function (e) {
   var key = 'AIzaSyAhVCu_gr8RKRpyAtvWqbtRb-DFyCvgqUM';
 
   stores = [];
+  bars = [];
 
   for (let i = 0; i < pizza_locations.length; i++) {
     stores.push(pizza_locations[i].shop.position.lat + ',' + pizza_locations[i].shop.position.lng);
   };
 
-  console.log(stores)
+  for (let i = 0; i < bar_locations.length; i++) {
+    bars.push(bar_locations[i].bar.position.lat + ',' + bar_locations[i].bar.position.lng);
+  }
+
+
 
 
 
@@ -89,8 +95,9 @@ $('#user-location-search').on('click', function (e) {
     url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + userLocation + '&key=' + key,
     method: 'GET'
   }).done(function (data) {
+    
 
-
+    
 
     function calcDistance(origin, destination) {
       var distanceService = new google.maps.DistanceMatrixService();
@@ -98,14 +105,14 @@ $('#user-location-search').on('click', function (e) {
           // pulls location from global variable
           // not dynamically updating
           // use filter function to sort out distance
-          origins: [userLocation],
-          destinations: stores,
+          origins: [origin],
+          destinations: destination,
           travelMode: google.maps.TravelMode.WALKING,
           unitSystem: google.maps.UnitSystem.IMPERIAL,
           // need to rework or change parameters to reflect walking times and routes  
           durationInTraffic: true,
-          avoidHighways: false,
-          avoidTolls: false
+          avoidHighways: true,
+          avoidTolls: true
         },
         function (response, status) {
           if (status !== google.maps.DistanceMatrixStatus.OK) {
@@ -114,12 +121,14 @@ $('#user-location-search').on('click', function (e) {
 
             // store distances 
             var distArr = [];
-
-
+            var barDistArr = [];
             // 1 meter = 0.000621 miles
             // iterates through data and returns the distances calculated for each location against current location
             // distances are converted from meters to miles and pushed to distArr
-            for (var i = 0; i < response.rows[0].elements.length; i++) {
+           
+           
+           function grabDistancePizza(){
+             for (let i = 0; i < response.rows[0].elements.length; i++) {
               // creates a new object with distance and store name and pushes to array
               distArr.push({
                 storeName: pizza_locations[i].shop.name,
@@ -129,20 +138,42 @@ $('#user-location-search').on('click', function (e) {
 
               });
             }
+           }
+           grabDistancePizza();
 
-            // sorts distances within distArr
-            distArr.sort(function (a, b) {
-              return a.distance - b.distance;
-            });
-            console.log(distArr);
+           function grabDistanceBars(){
+             for (let i = 0; i < response.rows[0].elements.length; i++) {
+              // creates a new object with distance and store name and pushes to array
+              barDistArr.push({
+                storeName: bar_locations[i].bar.name,
+                location: bar_locations[i].bar.position.lat + "," + bar_locations[i].bar.position.lng,
+                distance: (response.rows[0].elements[i].distance.value * 0.000621).toFixed(1),
+                rating: bar_locations[i].bar.rating
+
+              });
+            }
+           }
+           grabDistanceBars();
+           
+           // function to sort array of objects based on the value of each distance object
+            function sortArrDistance(arr) {
+              arr.sort(function (a, b) {
+                return a.distance - b.distance;
+              })
+            };
+
+            sortArrDistance(distArr);
+            sortArrDistance(barDistArr);
+
+            
 
             $("#location-list-module").empty();
             // iterate to list module and pushes the 5 closest to the list module
-            for (let j = 0; j < 5; j++) {
 
-
+            function displayResults(arr){
+              for (let j = 0; j < 5; j++) {
               var newListItem = $('<li>');
-              newListItem.attr("data-location", distArr[j].location);
+              newListItem.attr("data-location", arr[j].location);
               var newCollapseHeader = $('<div>');
               newCollapseHeader.attr("class", "collapsible-header ")
               var locName = $('<span>');
@@ -155,8 +186,8 @@ $('#user-location-search').on('click', function (e) {
               
               var newLocationAddress = $('<p>');
 
-              locName.html(distArr[j].storeName);
-              locDistance.html(distArr[j].distance);
+              locName.html(arr[j].storeName);
+              locDistance.html(arr[j].distance);
               newCollapseHeader.append(locName);
               newCollapseHeader.append(locDistance);
 
@@ -165,6 +196,36 @@ $('#user-location-search').on('click', function (e) {
 
               $('#location-list-module').append(newListItem);
             }
+            }
+
+            displayResults(distArr);
+            displayResults(barDistArr);
+
+            // for (let j = 0; j < 5; j++) {
+            //   var newListItem = $('<li>');
+            //   newListItem.attr("data-location", distArr[j].location);
+            //   var newCollapseHeader = $('<div>');
+            //   newCollapseHeader.attr("class", "collapsible-header ")
+            //   var locName = $('<span>');
+            //   locName.attr("class", "location-name");
+            //   var locDistance = $('<span>');
+            //   locDistance.attr("class", "list-distance");
+
+            //   var newCollapseBody = $('<div>');
+            //   newCollapseBody.attr("class", "collapsible-body");
+              
+            //   var newLocationAddress = $('<p>');
+
+            //   locName.html(distArr[j].storeName);
+            //   locDistance.html(distArr[j].distance);
+            //   newCollapseHeader.append(locName);
+            //   newCollapseHeader.append(locDistance);
+
+            //   newListItem.append(newCollapseHeader);
+            //   newListItem.append(newCollapseBody);
+
+            //   $('#location-list-module').append(newListItem);
+            // }
 
             // TESTING DIRECTIONS
             var directionsDisplay;
@@ -225,7 +286,8 @@ $('#user-location-search').on('click', function (e) {
     // sets userLocation (global variable) to what user entered
     userLocation = origin;
     //console.log(userLocation);
-    calcDistance();
+    calcDistance(userLocation, stores);
+    calcDistance(userLocation, bars);
 
   })
 });
@@ -244,7 +306,7 @@ db.ref().on('value', function (snap) {
     addBarMarker(barData[place].bar);
     addInfo(barData[place].bar)
   }
-  console.log(pizza_locations)
+  // console.log(pizza_locations)
 })
 
 // display options for map
