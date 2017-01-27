@@ -2,13 +2,29 @@
 $(document).ready(function () {
   // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
   $('.modal').modal();
+  $('#section2').hide();
 });
 
-$(".submit-button, .findLocation").click(function () {
+$(document).on("click", ".submit-button, .findLocation", function(){
+  if($('#userLocationInput').val() === ''){
+        return false;
+      } else {
+        $('#section2').show();
   $('html,body').animate({
       scrollTop: $("#section2").offset().top
     },
     'slow');
+      }
+})
+
+$(document).keypress(function(e) {
+    if(e.which == 13) {
+      if($('#userLocationInput').val() === ''){
+        return false;
+      } else {
+        $('.submit-button, .findLocation').trigger('click');
+      }
+    }
 });
 
 var config = {
