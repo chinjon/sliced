@@ -12,16 +12,17 @@
     <link rel="stylesheet" href="assets/css/styles.css">
     <script src="https://www.gstatic.com/firebasejs/3.6.5/firebase.js"></script>
     <title>Bitsie - Enjoy New York's Nightlife At A Bitsie Sized Cost!</title>
-  </head>
-  <body class="red darken-2">
-  <!-- SECTION 1 -->
-  <section id="section1" class="no-padding">
-    <!-- nav bar with info button -->
-    <nav class="transparent z-depth-0">
-      <div class="nav-wrapper transparent valign-wrapper">
+</head>
+<body class="red darken-2">
+  <!-- nav bar with info button -->
+    <nav class="transparent z-depth-0 infoNav">
+      <div class="nav-wrapper transparent valign-wrapper right">
         <a class="waves-effect btn-floating waves-light btn modal-trigger info_btn_color infobtn" id="infobtn" href="#modal1"><i class="material-icons">info</i></a>
       </div>
     </nav>
+  <!-- SECTION 1 -->
+  <section id="section1" class="no-padding">
+    
 
       
     <!-- Modal Structure -->
@@ -81,77 +82,76 @@
   <!-- END SECTION 1 -->
 
   <!-- SECTION 2 -->
-    <section id="section2" class="no-padding">
-      <div id="container">
-        <!-- Mini Logo Row -->
-        <div class="row">
-          <div class="col s12 l2 ">
-            <img class="miniLogo" src = "assets/img/mini-logo.png">
-          </div>
-          <div class="container valign-wrapper">
-            <div class="col l8 s9">
-              <!-- insert form for address or find my location button -->
-              <div class="input-field">
-                <input id="userLocationInput" type="text" class="validate">
-                <label for="userLocationInput">Want more bites?</label>
-              </div>
-            </div>
-            <div class="col l2 s3">
-                <a class="waves-effect waves-light btn submit-button" id="user-location-search-section2">Submit</a>
-            </div>
-          </div>
+  <section id="section2" class="no-padding">
+    <div id="container">
+      <!-- Mini Logo Row -->
+      <div class="row">
+        <div class="col s12 l2 ">
+          <img class="miniLogo" src = "assets/img/mini-logo.png">
         </div>
-         <!-- Main Content Row -->
-        <div class="row mainContent">
-          <!-- GOOGLE MAP -->
-          <div class="col s12 m7 l8">
-            <div id="map">
+        <div class="container valign-wrapper">
+          <div class="col l8 s9">
+            <!-- insert form for address or find my location button -->
+            <div class="input-field">
+              <input id="userLocationInput" type="text" class="validate">
+              <label for="userLocationInput">Want more bites?</label>
             </div>
           </div>
-          <!-- MAP -->
-          <!-- LIST MODULE -->
-          <div class="col s12 m5 l4">
-            <ul class="collapsible" data-collapsible="accordion" id="location-list-module">
-              <!--<li>
-                <div class="collapsible-header">
-                  <span class="location-name">5. Fifth Location</span>
-                  <span class="list-distance">0.2 miles</span>
-                  <span class="location-rating"><i class="material-icons rating-stars">star</i>3</span>
-                </div>
-                <div class="collapsible-body address-collapse">
-                  <p class="location-address">Address: 14th Street New York City, NY 00150</p>
-                </div>
-              </li>-->
-            </ul>
+          <div class="col l2 s3">
+              <a class="waves-effect waves-light btn submit-button" id="user-location-search-section2">Submit</a>
           </div>
         </div>
       </div>
-
-      <!-- FOOTER -->
-      <footer class="page-footer red darken-1">
-        <div class="footer-copyright red darken-2">
-          <div class="container">
-            <div class="row">
-              <div class="col m6 offset-m5">
-                Coded With <i class="fa fa-heart"></i> & <strong>PATIENCE</strong>
+       <!-- Main Content Row -->
+      <div class="row mainContent">
+        <!-- GOOGLE MAP -->
+        <div class="col s12 m7 l8">
+          <div id="map">
+          </div>
+        </div>
+        <!-- MAP -->
+        <!-- LIST MODULE -->
+        <div class="col s12 m5 l4">
+          <ul class="collapsible" data-collapsible="accordion" id="location-list-module">
+            <!--<li>
+              <div class="collapsible-header">
+                <span class="location-name">5. Fifth Location</span>
+                <span class="list-distance">0.2 miles</span>
+                <span class="location-rating"><i class="material-icons rating-stars">star</i>3</span>
               </div>
+              <div class="collapsible-body address-collapse">
+                <p class="location-address">Address: 14th Street New York City, NY 00150</p>
+              </div>
+            </li>-->
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="page-footer red darken-1">
+      <div class="footer-copyright red darken-2">
+        <div class="container">
+          <div class="row">
+            <div class="col m6 offset-m5">
+              Coded With <i class="fa fa-heart"></i> & <strong>PATIENCE</strong>
             </div>
           </div>
         </div>
-      </footer>
-      <!-- END FOOTER -->
+      </div>
+    </footer>
+    <!-- END FOOTER -->
+  </section>
+  <!-- END SECTION 2 -->
 
-    </section>
-    <!-- END SECTION 2 -->
 
-
-      <!-- SCRIPTS -->
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-    crossorigin="anonymous"></script>
-    <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAhVCu_gr8RKRpyAtvWqbtRb-DFyCvgqUM&callback=initMap"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
-    <script type="text/javascript" src="assets/js/main.js"></script>
+  <!-- SCRIPTS -->
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+  <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAhVCu_gr8RKRpyAtvWqbtRb-DFyCvgqUM&callback=initMap"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+  <script type="text/javascript" src="assets/js/main.js"></script>
 </body>
 
 </html>
