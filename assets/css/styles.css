@@ -18,12 +18,15 @@ main {
   margin-top: 0px;
   /*margin-bottom: 50px;*/
   padding: 20px;
+  z-index: 90;
+
 }
 
 .collapsible {
   height: 70vh;
   margin-top: 0px;
   background-color:white;
+  z-index: 90;
 }
 
 nav {
@@ -74,6 +77,15 @@ nav {
   z-index: 80;
 }
 
+.footer-overlay{
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: 70;
+  height:100px;
+}
+
 .infoNav{
   z-index:99;
 }
@@ -106,6 +118,7 @@ nav {
 
 .mainContent{
   margin-bottom:0px;
+  z-index: 99;
 }
 
 /*LOCATION LIST START*/
@@ -113,6 +126,12 @@ nav {
 #location-list-module {
   margin-top: 0px;
   overflow: scroll !important;
+    z-index: 90;
+
+}
+
+footer.page-footer{
+  background-color: #f44336;
 }
 
 .location-rating,
@@ -175,5 +194,5 @@ i.rating-stars {
 .collapsible-body p {
   padding: 15px;
   margin-left: 25px;
-
+  z-index: 90;
 }
